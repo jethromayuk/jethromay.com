@@ -32,84 +32,52 @@ export default function Uses() {
         <title>Uses - Jethro May</title>
         <meta
           name="description"
-          content="Software I use, gadgets I love, and other things I recommend."
+          content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes."
         />
       </Head>
       <SimpleLayout
-        title="Software I use, gadgets I love, and other things I recommend."
-        intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+        title="Software I use."
+        intro="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes. "
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
-            </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
-            </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
-            </Tool>
-            <Tool title="Apple Magic Trackpad">
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
-            </Tool>
-            <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+            <Tool title="16” MacBook Pro, i7, 16GB RAM, 500GB SSD (2019)">
+                This is my every day development machine that I use for both work and personal projects.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Sublime Text 4">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+            <Tool title="Visual Studio Code">
+                I was previously a long-time PHPStorm user, however due to developing in multiple languages I needed a multi-purpose code editor. I am also continually blown away at how great the extension ecosystem is. 
             </Tool>
-            <Tool title="iTerm2">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
+            <Tool title="Warp">
+                Easy to use, ridiculously fast and it comes with game changing features.
             </Tool>
             <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+                Sequel Pro was my go-to database management tool for some time, however development slowed down and I needed a stable database client. TablePlus also supports multiple drivers such as Redis & SQLite, to name a few.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Design">
-            <Tool title="Figma">
-              We started using Figma as just a design tool but now it’s become
-              our virtual whiteboard for the entire company. Never would have
-              expected the collaboration features to be the real hook.
+            <Tool title="Sip">
+                An easy to use color picker, that works across apps and websites. 
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="Alfred">
-              It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
+                When I first heard of Alfred, I wasn't sure that I needed it. After using it for some time, I realised how great it actually is. I have many custom workflows that are core to my development process. 
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+          </ToolsSection>
+          <ToolsSection title="Hosting">
+            <Tool title="Github">
+                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
             </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
+            <Tool title="Vercel">
+                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
             </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+            <Tool title="Digital Ocean">
+                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
+            </Tool>
+            <Tool title="Namecheap">
+                All of my domains are registered via Namecheap, they are affordable and their interface is easy to use, no complaints. 
             </Tool>
           </ToolsSection>
         </div>
