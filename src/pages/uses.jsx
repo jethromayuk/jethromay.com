@@ -68,16 +68,16 @@ export default function Uses() {
           </ToolsSection>
           <ToolsSection title="Hosting">
             <Tool title="Github">
-                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
+                I store all of my code on GitHub, having transitioned from GitLab and BitBucket due to various issues I encountered with these platforms. GitHub not only offers ease of use but also stands as the industry standard platform for open-source projects.
             </Tool>
             <Tool title="Vercel">
-                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
+                I opt for Vercel as my hosting platform when my projects necessitate robust static site hosting and seamless integration of serverless functions.
             </Tool>
             <Tool title="Digital Ocean">
-                All of my code is stored on GitHub, I previously used GitLab, BitBucket and found they both had their issues. GitHub is easy to use and is the industry standard platform for open source projects. 
+                I host on DigitalOcean because it provides a highly scalable and flexible infrastructure with robust performance, coupled with an intuitive interface and competitive pricing, all of which greatly enhance my overall hosting experience.
             </Tool>
             <Tool title="Namecheap">
-                All of my domains are registered via Namecheap, they are affordable and their interface is easy to use, no complaints. 
+                I have registered all of my domains through Namecheap; not only are their services affordable, but their user interface is also exceptionally easy to navigate.
             </Tool>
           </ToolsSection>
         </div>
