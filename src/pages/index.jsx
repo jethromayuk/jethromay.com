@@ -8,7 +8,6 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
   TwitterIcon,
 } from '@/components/SocialIcons'
@@ -16,11 +15,6 @@ import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
 import logoStarbucks from '@/images/logos/starbucks.svg'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
@@ -239,7 +233,7 @@ export default function Home({ articles }) {
             Hey, I'm Jethro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I am a web developer and entrepreneur based in London, United Kingdom. I have 10 years of experience across a wide variety of languages and technologies with my current tech stack being Laravel, Livewire, AlpineJS and Tailwind.
+            I am a web developer and entrepreneur based in London, United Kingdom.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

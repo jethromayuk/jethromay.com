@@ -44,7 +44,7 @@ export default function About() {
         <title>About - Jethro May</title>
         <meta
           name="description"
-          content="I’m Jethro May. I live in New York City, where I design the future."
+          content="I’m Jethro May. I live in London, United Kingdom, where I build the future."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -61,8 +61,7 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Jethro May. I live in London, United Kingdom, where I design the
-              future.
+              I’m Jethro May. I live in London, United Kingdom, where I build the future.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
@@ -86,10 +85,10 @@ export default function About() {
                 photo back down to our family computer from space.
               </p>
               <p>
-                Today, I’m the founder of Planetaria, where we’re working on
-                civilian space suits and manned shuttle kits you can assemble at
-                home so that the next generation of kids really <em>can</em>{' '}
-                make it to orbit — from the comfort of their own backyards.
+                Today, I’m a senior web developer at MintTwist, which is part of Finn Partners, 
+                a global digital agency. Where we’re working on civilian space suits and 
+                manned shuttle kits you can assemble at home so that the next generation of 
+                kids really <em>can</em>{' '} make it to orbit — from the comfort of their own backyards.
               </p>
             </div>
           </div>
@@ -104,13 +103,6 @@ export default function About() {
               <SocialLink href="https://www.linkedin.com/in/jethromay/" icon={LinkedInIcon} className="mt-4">
                 Follow on LinkedIn
               </SocialLink>
-              {/* <SocialLink
-                href=""
-                icon={MailIcon}
-                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
-              >
-                ...@...
-              </SocialLink> */}
             </ul>
           </div>
         </div>
