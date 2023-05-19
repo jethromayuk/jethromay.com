@@ -1,0 +1,35 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Adam Wathan',
+  date: '2021-12-01',
+  title: 'Simplifying Belongs To Relationship Queries',
+  description:
+    'A useful addition to the Laravel framework was added recently, which allows for a cleaner syntax when retrieving items via a belongsTo relationship.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+A useful addition to the Laravel framework was added recently, which allows for a cleaner syntax when retrieving items via a 'belongsTo' relationship. 
+
+Previously if you wanted to retrieve posts for a specific user you would build out a where clause as follows:
+
+```php
+use App\Models\Post;
+
+$posts = Post::where('user_id', $user->id)->get();
+```
+
+A newer and cleaner syntax allows you to do the following:
+
+```php
+$posts = Post::whereBelongsTo($user)->get();
+```
+
+You may also manually specify which relationship to query by providing the name of the relationship as the second argument:
+
+```php
+$posts = Post::whereBelongsTo($user, 'author')->get();
+```
+
+I'm always a huge fan of changes like these that improve code readability.

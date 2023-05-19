@@ -1,0 +1,35 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import successfulEmail from './successful-email.png'
+
+export const meta = {
+  author: 'Jethro May',
+  date: '2021-08-02',
+  title: 'Testing Mails Using The Command Line',
+  description:
+    'Sometimes you might need to test Laravel mails using the command line, to see if they are being sent/received, use this method to simplify testing.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+Sometimes you might need to test Laravel mails using the command line, to see if they are being sent/received, use this method to simplify testing.
+
+I will often use Tinkerwell and HELO for this but you can also use ```php artisan tinker``` and your regular email client.
+
+Simply paste in the following snippet and update the email address to send the email:
+
+```bash
+Mail::raw('Test Mail', function($msg) {
+    $msg->to('email@example.com')->subject('Test Mail');
+});
+```
+
+If you are on PHP 7.4 +, you can simplify the above using short arrow functions:
+
+```bash
+Mail::raw('Test Mail', fn($msg) => $msg->to('email@example.com')->subject('Test Mail'));
+```
+
+After running the above snippet you will receive an email if everything has worked correctly:
+
+<Image src={successfulEmail} alt="" />
