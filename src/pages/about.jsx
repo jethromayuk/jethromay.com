@@ -68,7 +68,10 @@ export default function About() {
                 I'm a senior web developer over at <Link href="https://minttwist" class="font-bold hover:text-teal-500">MintTwist</Link>, which is part of <Link href="https://finnpartners.com" class="font-bold hover:text-teal-500">Finn Partners</Link> - a digital agency with offices in many countries around the globe. I spend most of my time building speedy PHP websites, e-commerce platforms, and systems using cool tech like <Link href="https://laravel.com" class="font-bold hover:text-teal-500">Laravel</Link>, <Link href="https://wordpress.org" class="font-bold hover:text-teal-500">WordPress</Link> & <Link href="https://woocommerce.com" class="font-bold hover:text-teal-500">WooCommerce</Link>.              
               </p>
               <p>
-                But it's not all work - I'm super into the Laravel community and all things open-source. And lately, I've been exploring the exciting world of AI. The most thrilling news? I've recently started my own tech-centered venture with a good friend of mine. We're calling it JJ & Partners. Keep an eye out, I'll be sharing more about this new journey soon on my <Link href="/articles" class="font-bold hover:text-teal-500">blog</Link>.              
+                But it's not all work - I'm super into the Laravel community and all things open-source. And lately, I've been exploring the exciting world of AI.              
+              </p>
+              <p>
+                
               </p>
             </div>
           </div>
