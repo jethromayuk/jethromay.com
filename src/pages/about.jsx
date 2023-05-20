@@ -71,7 +71,7 @@ export default function About() {
                 But it's not all work - I'm super into the Laravel community and all things open-source. And lately, I've been exploring the exciting world of AI.              
               </p>
               <p>
-                
+                Beyond the world of code and tech, I'm also keenly focused on maintaining a healthy balance in life. Staying active is a big part of that - whether it's hitting the weights at the gym, practicing kickboxing moves, or immersing myself in nature on a hike. But it's not just about physical fitness; these activities also play a crucial role in my mental well-being. They act as stress-busters, energy boosters, and provide me with the clarity and peace of mind that is so essential in our fast-paced world. This harmony between body and mind keeps me energized and ready for all the exciting projects and explorations in the tech realm!
               </p>
             </div>
           </div>
