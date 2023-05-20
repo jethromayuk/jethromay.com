@@ -179,22 +179,16 @@ function Resume() {
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
-  return ('')
-}
-
 export default function Home({ articles }) {
   return (
     <>
       <Head>
         <title>
-          Jethro May - Web developer.
+          Jethro May - Web Developer.
         </title>
         <meta
           name="description"
-          content="I am a web developer and entrepreneur based in London, United Kingdom. I have 10 years of experience across a wide variety of languages and technologies with my current tech stack being Laravel, Livewire, AlpineJS and Tailwind."
+          content="Jethro May, a London-based Web Developer with 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions."
         />
       </Head>
       <Container className="mt-9">
