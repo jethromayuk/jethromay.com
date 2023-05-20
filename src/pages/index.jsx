@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -190,6 +189,17 @@ export default function Home({ articles }) {
           name="description"
           content="Jethro May, a London-based Web Developer with 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions."
         />
+        <meta property="og:url" content="https://jethromay.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Jethro May" />
+        <meta property="og:description" content="Jethro May, a London-based Web Developer with 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions." />
+        <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="jethromayuk" />
+        <meta property="twitter:url" content="https://twitter.com/jethromayuk" />
+        <meta name="twitter:title" content="Jethro May" />
+        <meta name="twitter:description" content="Jethro May, a London-based Web Developer with 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions." />
+        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
