@@ -184,7 +184,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Jethro May - Web Developer.
+          Jethro May
         </title>
         <meta
           name="description"
