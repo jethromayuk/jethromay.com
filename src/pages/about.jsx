@@ -65,7 +65,7 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I'm Partner, Head of Web Development over at <Link href="https://finnpartners" class="font-bold hover:text-teal-500">FINN Partners</Link>, a globally distributed agency with offices around the world. I spend most of my time building speedy PHP websites, e-commerce platforms, and systems using cool tech like <Link href="https://laravel.com" class="font-bold hover:text-teal-500">Laravel</Link>, <Link href="https://wordpress.org" class="font-bold hover:text-teal-500">WordPress</Link> & <Link href="https://woocommerce.com" class="font-bold hover:text-teal-500">WooCommerce</Link>.              
+                I'm Partner, Head of Web Development over at <Link href="https://finnpartners" class="font-bold hover:text-teal-500">FINN Partners</Link>, a globally distributed agency with offices around the world. My focus has shifted from day-to-day coding to strategically managing and leading development teams, guiding them in architecting scalable systems for expansive user bases.              
               </p>
               <p>
                 But it's not all work - I'm super into the Laravel community and all things open-source. And lately, I've been exploring the exciting world of AI.              
