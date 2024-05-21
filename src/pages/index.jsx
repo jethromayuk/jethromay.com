@@ -102,18 +102,8 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'JJ & Partners',
-      title: 'Founder',
-      logo: logoJJAndPartners,
-      start: '2023',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
-      company: 'MintTwist',
-      title: 'Senior Web Developer',
+      company: 'FINN Partners',
+      title: 'Partner, Head of Web Development',
       logo: logoMintTwist,
       start: '2020',
       end: {
