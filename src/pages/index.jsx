@@ -7,8 +7,7 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  LinkedInIcon,
-  TwitterIcon,
+  LinkedInIcon
 } from '@/components/SocialIcons'
 import logoJJAndPartners from '@/images/logos/jj-and-partners.svg'
 import logoMintTwist from '@/images/logos/minttwist.svg'
@@ -184,12 +183,6 @@ export default function Home({ articles }) {
         <meta property="og:title" content="Jethro May" />
         <meta property="og:description" content="Jethro May, a London-based Web Developer with more than 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="jethromayuk" />
-        <meta property="twitter:url" content="https://twitter.com/jethromayuk" />
-        <meta name="twitter:title" content="Jethro May" />
-        <meta name="twitter:description" content="Jethro May, a London-based Web Developer with more than 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, and Tailwind for dynamic web solutions." />
-        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
@@ -200,11 +193,6 @@ export default function Home({ articles }) {
             I am a web developer and entrepreneur with more than 10 years of experience, currently based in London, United Kingdom.
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink
-              href="https://twitter.com/jethromayuk"
-              aria-label="Follow on Twitter"
-              icon={TwitterIcon}
-            />
             <SocialLink
               href="https://github.com/jethromayuk/"
               aria-label="Follow on GitHub"
