@@ -41,7 +41,7 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, i7, 16GB RAM, 500GB SSD (2019)">
+            <Tool title="14” MacBook M3 Pro, 32GB RAM, 1TB SSD">
                 This is my every day development machine that I use for both work and personal projects.
             </Tool>
           </ToolsSection>
