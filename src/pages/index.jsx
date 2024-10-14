@@ -102,7 +102,7 @@ function Resume() {
   let resume = [
     {
       company: 'FINN Partners',
-      title: 'Partner, Head of Web Development',
+      title: 'Partner, Head of Development',
       logo: logoMintTwist,
       start: '2020',
       end: {
