@@ -62,8 +62,8 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Alfred">
-                When I first heard of Alfred, I wasn't sure that I needed it. After using it for some time, I realised how great it actually is. I have many custom workflows that are core to my development process. 
+            <Tool title="Raycast">
+                I was previously a long time Alfred user, however, this year I switched to Raycast which is one less subscription to pay for. Its also extremely powerful and offers a lot of features that I didn't previously have.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Hosting">
