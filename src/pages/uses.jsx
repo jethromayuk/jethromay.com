@@ -46,8 +46,8 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Visual Studio Code">
-                I was previously a long-time PHPStorm user, however due to developing in multiple languages I needed a multi-purpose code editor. I am also continually blown away at how great the extension ecosystem is. 
+            <Tool title="PHPStorm">
+                I've returned to using PHPStorm after a number of years on Visual Studio Code. Nothing compares to the power that PHPStorm offers.
             </Tool>
             <Tool title="Warp">
                 Easy to use, ridiculously fast and it comes with game changing features.
