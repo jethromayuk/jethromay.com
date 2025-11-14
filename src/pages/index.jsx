@@ -190,7 +190,7 @@ export default function Home({ articles }) {
             Hey, I'm Jethro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I am a web developer and entrepreneur with more than 10 years of experience, currently based in London, United Kingdom.
+            I am a web developer and entrepreneur with more than 12 years of experience, currently based in London, United Kingdom.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
