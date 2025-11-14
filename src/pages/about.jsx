@@ -64,7 +64,6 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-<<<<<<< HEAD
                 I'm Partner, Head of Development over at <Link href="https://finnpartners.com" class="font-bold hover:text-teal-500">FINN Partners</Link>, a globally distributed agency with offices around the world. My focus has shifted from day-to-day coding to strategically managing and leading development teams, guiding them in architecting scalable systems for expansive user bases.
               </p>
               <p>
