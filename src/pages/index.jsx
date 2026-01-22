@@ -182,7 +182,7 @@ export default function Home({ articles }) {
         <meta property="og:url" content="https://jethromay.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Jethro May" />
-        <meta property="og:description" content="Jethro May, a London-based Web Developer with more than 10 years' experience. Specializing in Laravel, Livewire, AlpineJS, Tailwind and WordPress for dynamic web solutions." />
+        <meta property="og:description" content="Jethro May, a London-based Web Developer with more than 12 years' experience. Specializing in Laravel, Livewire, AlpineJS, Tailwind and WordPress for dynamic web solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <Container className="mt-9">
