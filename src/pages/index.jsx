@@ -7,7 +7,8 @@ import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  LinkedInIcon
+  LinkedInIcon,
+  BlueSkyIcon
 } from '@/components/SocialIcons'
 import logoJJAndPartners from '@/images/logos/jj-and-partners.svg'
 import logoMintTwist from '@/images/logos/minttwist.svg'
@@ -202,6 +203,11 @@ export default function Home({ articles }) {
               href="https://www.linkedin.com/in/jethromay/"
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href="https://bsky.app/profile/jethromay.bsky.social"
+              aria-label="Follow on BlueSky"
+              icon={BlueSkyIcon}
             />
           </div>
         </div>
