@@ -93,7 +93,7 @@ function Article({ article }) {
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
+    <Link className="group -m-1 p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded-sm" target="_blank" rel="noopener noreferrer" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
@@ -130,7 +130,7 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              <Image src={role.logo} alt={role.company} className="h-7 w-7" unoptimized />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>

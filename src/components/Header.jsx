@@ -141,7 +141,7 @@ function NavItem({ href, children }) {
       <Link
         href={href}
         className={clsx(
-          'relative block px-3 py-2 transition',
+          'relative block px-3 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded-md',
           isActive
             ? 'text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400'
@@ -194,7 +194,7 @@ function ModeToggle() {
     <button
       type="button"
       aria-label="Toggle dark mode"
-      className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+      className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
       onClick={toggleMode}
     >
       <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
@@ -231,7 +231,7 @@ function Avatar({ large = false, className, ...props }) {
     >
       <Image
         src={avatarImage}
-        alt=""
+        alt="Jethro May"
         sizes={large ? '4rem' : '2.25rem'}
         className={clsx(
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
@@ -330,19 +330,29 @@ export function Header() {
       setProperty('--avatar-border-opacity', scale === toScale ? 1 : 0)
     }
 
+    let rafId = null
+
     function updateStyles() {
       updateHeaderStyles()
       updateAvatarStyles()
       isInitial.current = false
+      rafId = null
+    }
+
+    function scheduleUpdate() {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(updateStyles)
+      }
     }
 
     updateStyles()
-    window.addEventListener('scroll', updateStyles, { passive: true })
-    window.addEventListener('resize', updateStyles)
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
 
     return () => {
-      window.removeEventListener('scroll', updateStyles)
-      window.removeEventListener('resize', updateStyles)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      if (rafId !== null) cancelAnimationFrame(rafId)
     }
   }, [isHomePage])
 
