@@ -44,13 +44,13 @@ export function ArticleLayout({
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${meta.title} - Jethro May`} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={`${baseUrl}/me.jpg`} />
+        <meta property="og:image" content={`${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description)}`} />
         <meta property="article:published_time" content={meta.date} />
         <meta property="article:author" content="Jethro May" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${meta.title} - Jethro May`} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={`${baseUrl}/me.jpg`} />
+        <meta name="twitter:image" content={`${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description)}`} />
       </Head>
       <StructuredData
         data={{

@@ -36,6 +36,24 @@ async function createSession() {
   return res.json()
 }
 
+async function uploadThumb(accessJwt, title, description) {
+  const ogUrl = `${process.env.SITE_URL}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description ?? '')}`
+  const imageRes = await fetch(ogUrl)
+  if (!imageRes.ok) return null
+  const imageBuffer = await imageRes.arrayBuffer()
+  const res = await fetch('https://bsky.social/xrpc/com.atproto.repo.uploadBlob', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'image/png',
+      Authorization: `Bearer ${accessJwt}`,
+    },
+    body: imageBuffer,
+  })
+  if (!res.ok) return null
+  const { blob } = await res.json()
+  return blob
+}
+
 async function post(accessJwt, did, { title, description, url, tags }) {
   const encoder = new TextEncoder()
   const hashtagLine = tags.length ? '\n\n' + tags.map((t) => `#${t}`).join(' ') : ''
@@ -72,7 +90,12 @@ async function post(accessJwt, did, { title, description, url, tags }) {
     facets,
     embed: {
       $type: 'app.bsky.embed.external',
-      external: { uri: url, title, description: description ?? '' },
+      external: {
+        uri: url,
+        title,
+        description: description ?? '',
+        ...(await uploadThumb(accessJwt, title, description).then((thumb) => thumb ? { thumb } : {})),
+      },
     },
     createdAt: new Date().toISOString(),
   }
