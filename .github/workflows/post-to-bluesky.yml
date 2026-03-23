@@ -1,0 +1,30 @@
+name: Post to Bluesky
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pages/articles/**/*.mdx'
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find new articles
+        id: find
+        run: |
+          FILES=$(git diff --name-status HEAD~1 HEAD | grep '^A' | grep 'src/pages/articles/.*\.mdx' | awk '{print $2}' | tr '\n' ' ')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      - name: Post to Bluesky
+        if: steps.find.outputs.files != ''
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          SITE_URL: https://jethromay.com
+          NEW_ARTICLE_FILES: ${{ steps.find.outputs.files }}
+        run: node .github/scripts/post-to-bluesky.js
