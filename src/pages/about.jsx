@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { StructuredData } from '@/components/StructuredData'
 import {
+  BlueSkyIcon,
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon
@@ -103,6 +104,9 @@ export default function About() {
               </SocialLink>
               <SocialLink href="https://www.linkedin.com/in/jethromay/" icon={LinkedInIcon} className="mt-4">
                 Follow on LinkedIn
+              </SocialLink>
+              <SocialLink href="https://bsky.app/profile/jethromay.bsky.social" icon={BlueSkyIcon} className="mt-4">
+                Follow on Bluesky
               </SocialLink>
             </ul>
           </div>
