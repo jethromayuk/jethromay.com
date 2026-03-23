@@ -3,7 +3,7 @@ import { getAllArticles } from '@/lib/getAllArticles'
 const staticRoutes = ['', '/about', '/uses', '/articles']
 
 function generateSitemap(articles) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jethromay.com'
 
   const staticUrls = staticRoutes
     .map(
