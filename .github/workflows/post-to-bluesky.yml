@@ -5,6 +5,11 @@ on:
     branches: [main]
     paths:
       - 'src/pages/articles/**/*.mdx'
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Article file path to post (e.g. src/pages/articles/my-article/index.mdx)'
+        required: true
 
 jobs:
   post:
@@ -17,7 +22,11 @@ jobs:
       - name: Find new articles
         id: find
         run: |
-          FILES=$(git diff --name-status HEAD~1 HEAD | grep '^A' | grep 'src/pages/articles/.*\.mdx' | awk '{print $2}' | tr '\n' ' ')
+          if [ -n "${{ github.event.inputs.file }}" ]; then
+            FILES="${{ github.event.inputs.file }}"
+          else
+            FILES=$(git diff --name-status HEAD~1 HEAD | grep '^A' | grep 'src/pages/articles/.*\.mdx' | awk '{print $2}' | tr '\n' ' ')
+          fi
           echo "files=$FILES" >> $GITHUB_OUTPUT
 
       - name: Post to Bluesky
