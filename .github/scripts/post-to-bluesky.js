@@ -3,8 +3,8 @@ const fs = require('fs')
 const files = (process.env.NEW_ARTICLE_FILES || '').trim().split(/\s+/).filter(Boolean)
 
 function extractMeta(content) {
-  const titleMatch = content.match(/title:\s*['"](.+?)['"]/)
-  const descriptionMatch = content.match(/description:\s*['"](.+?)['"]/)
+  const titleMatch = content.match(/title:\s*"([^"]+)"/) || content.match(/title:\s*'([^']+)'/)
+  const descriptionMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/)
   const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/)
   const tags = tagsMatch
     ? tagsMatch[1].match(/['"]([^'"]+)['"]/g).map((t) => t.replace(/['"]/g, ''))
