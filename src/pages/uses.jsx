@@ -34,6 +34,7 @@ export default function Uses() {
           name="description"
           content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes."
         />
+        <link rel="canonical" href="https://jethromay.com/uses" />
         <meta property="og:url" content="https://jethromay.com/uses" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Uses - Jethro May" />

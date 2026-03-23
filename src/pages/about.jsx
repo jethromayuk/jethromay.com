@@ -49,6 +49,7 @@ export default function About() {
           name="description"
           content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions."
         />
+        <link rel="canonical" href="https://jethromay.com/about" />
         <meta property="og:url" content="https://jethromay.com/about" />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="About - Jethro May" />

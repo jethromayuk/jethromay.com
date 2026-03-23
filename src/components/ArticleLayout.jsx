@@ -39,11 +39,14 @@ export function ArticleLayout({
       <Head>
         <title>{`${meta.title} - Jethro May`}</title>
         <meta name="description" content={meta.description} />
+        <link rel="canonical" href={articleUrl} />
         <meta property="og:url" content={articleUrl} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${meta.title} - Jethro May`} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={`${baseUrl}/me.jpg`} />
+        <meta property="article:published_time" content={meta.date} />
+        <meta property="article:author" content="Jethro May" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${meta.title} - Jethro May`} />
         <meta name="twitter:description" content={meta.description} />

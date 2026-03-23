@@ -180,6 +180,7 @@ export default function Home({ articles }) {
           name="description"
           content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions."
         />
+        <link rel="canonical" href="https://jethromay.com" />
         <meta property="og:url" content="https://jethromay.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Jethro May" />

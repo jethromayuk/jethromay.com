@@ -41,8 +41,18 @@ export default function ArticlesIndex({ articles }) {
         <title>Articles - Jethro May</title>
         <meta
           name="description"
-          content="Sometimes, I write blog posts about things I find interesting"
+          content="Articles on web development, engineering leadership, and technology by Jethro May."
         />
+        <link rel="canonical" href="https://jethromay.com/articles" />
+        <meta property="og:url" content="https://jethromay.com/articles" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Articles - Jethro May" />
+        <meta property="og:description" content="Articles on web development, engineering leadership, and technology by Jethro May." />
+        <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Articles - Jethro May" />
+        <meta name="twitter:description" content="Articles on web development, engineering leadership, and technology by Jethro May." />
+        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <SimpleLayout
         title="Sometimes, I write blog posts about things I find interesting."
