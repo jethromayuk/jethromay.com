@@ -5,9 +5,14 @@ const files = (process.env.NEW_ARTICLE_FILES || '').trim().split(/\s+/).filter(B
 function extractMeta(content) {
   const titleMatch = content.match(/title:\s*['"](.+?)['"]/)
   const descriptionMatch = content.match(/description:\s*['"](.+?)['"]/)
+  const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/)
+  const tags = tagsMatch
+    ? tagsMatch[1].match(/['"]([^'"]+)['"]/g).map((t) => t.replace(/['"]/g, ''))
+    : []
   return {
     title: titleMatch?.[1] ?? null,
     description: descriptionMatch?.[1] ?? null,
+    tags,
   }
 }
 
@@ -31,21 +36,40 @@ async function createSession() {
   return res.json()
 }
 
-async function post(accessJwt, did, { title, description, url }) {
-  const text = `New article: ${title}\n\n${url}`
+async function post(accessJwt, did, { title, description, url, tags }) {
   const encoder = new TextEncoder()
-  const byteStart = encoder.encode(`New article: ${title}\n\n`).length
+  const hashtagLine = tags.length ? '\n\n' + tags.map((t) => `#${t}`).join(' ') : ''
+  const text = `New article: ${title}\n\n${url}${hashtagLine}`
+
+  const urlPrefix = `New article: ${title}\n\n`
+  const byteStart = encoder.encode(urlPrefix).length
   const byteEnd = byteStart + encoder.encode(url).length
+
+  const facets = [
+    {
+      index: { byteStart, byteEnd },
+      features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
+    },
+  ]
+
+  if (tags.length) {
+    let offset = encoder.encode(`New article: ${title}\n\n${url}\n\n`).length
+    for (const tag of tags) {
+      const tagText = `#${tag}`
+      const tagStart = offset
+      const tagEnd = offset + encoder.encode(tagText).length
+      facets.push({
+        index: { byteStart: tagStart, byteEnd: tagEnd },
+        features: [{ $type: 'app.bsky.richtext.facet#tag', tag }],
+      })
+      offset = tagEnd + encoder.encode(' ').length
+    }
+  }
 
   const record = {
     $type: 'app.bsky.feed.post',
     text,
-    facets: [
-      {
-        index: { byteStart, byteEnd },
-        features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
-      },
-    ],
+    facets,
     embed: {
       $type: 'app.bsky.embed.external',
       external: { uri: url, title, description: description ?? '' },

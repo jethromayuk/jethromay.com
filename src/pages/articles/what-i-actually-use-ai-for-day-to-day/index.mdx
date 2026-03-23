@@ -5,6 +5,7 @@ export const meta = {
   date: '2026-03-23',
   title: 'What I Actually Use AI For Day-to-Day',
   description: "AI isn't coming for your job — but ignoring it might.",
+  tags: ['webdev', 'AI', 'engineering'],
 }
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
@@ -31,7 +32,7 @@ For internal tooling that doesn't need to live in a production codebase, [Replit
 
 AI has changed how I approach code review. Before looking at a PR in detail, I'll often run it through a model to get an initial read — obvious issues, potential edge cases, anything worth flagging. It doesn't replace the actual review, but it means I'm going into it with more context and a clearer sense of where to focus.
 
-It's also useful in the other direction: before submitting my own work, having something check it over catches things I'd otherwise miss after staring at the same code for too long.
+It's also useful in the other direction: before submitting my own work, having something review it independently gives a perspective that's hard to get when you've been in the same codebase all day.
 
 The next step is automating this at the team level — running AI reviews on every PR as part of the pipeline, so there's always a first pass in place before a human picks it up. Still building that out, but the direction is clear.
 
