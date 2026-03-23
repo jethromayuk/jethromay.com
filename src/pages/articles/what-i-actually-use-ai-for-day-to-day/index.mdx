@@ -1,0 +1,56 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Jethro May',
+  date: '2026-03-23',
+  title: 'What I Actually Use AI For Day-to-Day',
+  description: "AI isn't coming for your job — but ignoring it might.",
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+I use AI every day. Not in a vague, exploratory way — in a concrete, this-is-now-part-of-how-I-work way. I'm also leading the AI-first approach at FINN Partners, which means I'm thinking about how it fits into team workflows, not just my own.
+
+This is what it actually looks like in practice.
+
+## Claude Code
+
+This is where I spend most of my time. Claude Code is a CLI tool from Anthropic that runs in your terminal alongside your editor. It can read your codebase, write and edit files, run commands, and reason through problems with context.
+
+I use it for the kind of work that used to require deep focus but not necessarily deep thinking — boilerplate, repetitive refactoring, wiring things together. It handles the mechanical parts, and I handle the decisions. That split works well once you get used to it.
+
+It's also genuinely useful for unfamiliar territory. If I'm working in a part of the stack I don't know well, having something that can read the codebase and explain what's happening is a lot faster than piecing it together manually.
+
+## Building with the Claude API
+
+Beyond using Claude as a tool, I've been building with it directly — internal automations, workflow tools, small experiments. The API is straightforward enough that you can go from idea to working prototype quickly, which is where a lot of the value is. Getting something functional in front of people fast, then iterating.
+
+## Replit for Internal Tools
+
+For internal tooling that doesn't need to live in a production codebase, Replit is useful. It's quick to spin up, easy to share with non-technical stakeholders, and keeps things out of the main repo where they don't belong. I use it for things that need to exist and be usable, but don't need to be maintained long-term.
+
+## Code Review
+
+AI has changed how I approach code review. Before looking at a PR in detail, I'll often run it through a model to get an initial read — obvious issues, potential edge cases, anything worth flagging. It doesn't replace the actual review, but it means I'm going into it with more context and a clearer sense of where to focus.
+
+It's also useful in the other direction: before submitting my own work, having something check it over catches things I'd otherwise miss after staring at the same code for too long.
+
+## Testing
+
+Writing tests has historically been one of those tasks that everyone agrees is important and nobody enjoys as much as they should. AI is genuinely good at this — generating test cases, covering edge cases you didn't think of, writing the repetitive parts. I still review everything, but the starting point is much better.
+
+## The Job Anxiety Thing
+
+People ask me about this fairly regularly, especially junior developers. I understand why — the coverage around AI and jobs is hard to ignore.
+
+My honest take: AI is replacing the parts of development that were never the interesting parts. The mechanical work, the boilerplate, the stuff that felt productive but wasn't really the job. What it can't do is understand the business problem, make the right tradeoffs, know when something is technically correct but wrong for the context. That's still the work.
+
+The developers I'd be more concerned about are the ones treating this as a passing trend. The tools are here, they're being used, and teams that build them into their process have a real advantage over ones that don't. That gap is only going to widen.
+
+## Where This Is Headed
+
+The tools have matured significantly, but the workflows around them haven't fully caught up. Most teams are still figuring out where AI fits, what the guardrails should be, how to review AI-assisted work. That's the actual interesting problem right now — not whether to use these tools, but how to use them well at team scale.
+
+That's what I'm focused on at FINN Partners. Getting the processes right so that the whole team benefits, not just the individuals who've figured out their own setup.
+
+If you're not using AI in your day-to-day yet, the barrier to starting is lower than you probably think. Pick one workflow, try it for a week, and see what changes.
