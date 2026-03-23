@@ -46,25 +46,25 @@ export default function About() {
         <title>About - Jethro May</title>
         <meta
           name="description"
-          content="I’m Jethro May. I live in London, United Kingdom, where I build the future."
+          content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions."
         />
       </Head>
       <StructuredData
         data={{
-          ‘@context’: ‘https://schema.org’,
-          ‘@type’: ‘Person’,
-          name: ‘Jethro May’,
-          url: ‘https://jethromay.com’,
-          jobTitle: ‘Partner, Head of Development’,
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Jethro May',
+          url: 'https://jethromay.com',
+          jobTitle: 'Partner, Head of Development',
           worksFor: {
-            ‘@type’: ‘Organization’,
-            name: ‘FINN Partners’,
+            '@type': 'Organization',
+            name: 'FINN Partners UK',
           },
-          image: ‘https://jethromay.com/me.jpg’,
+          image: 'https://jethromay.com/me.jpg',
           sameAs: [
-            ‘https://github.com/jethromayuk/’,
-            ‘https://www.linkedin.com/in/jethromay/’,
-            ‘https://bsky.app/profile/jethromay.bsky.social’,
+            'https://github.com/jethromayuk/',
+            'https://www.linkedin.com/in/jethromay/',
+            'https://bsky.app/profile/jethromay.bsky.social',
           ],
         }}
       />
@@ -82,17 +82,17 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Jethro May. I live in London, where I build the future.
+              I'm Jethro May. I live in London, where I build the future.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I'm Partner, Head of Development over at <Link href="https://finnpartners.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-teal-500">FINN Partners</Link>, a globally distributed agency with offices around the world. My focus has shifted from day-to-day coding to strategically managing and leading development teams, guiding them in architecting scalable systems for expansive user bases.
+                I'm Partner, Head of Development at <Link href="https://finnpartners.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-teal-500">FINN Partners UK</Link>, a globally distributed agency with offices around the world. I lead and coordinate a globally distributed development team, managing projects across the full spectrum — from small-scale implementations to complex enterprise solutions.
               </p>
               <p>
-                But it's not all work - I'm super into the Laravel community and all things open-source. And lately, I've been exploring the exciting world of AI.              
+                My work spans technical consultation with key clients, translating complex requirements into scalable solutions, partnering with project management and stakeholders on goals and deliverables, and bridging the gap between technical teams and business stakeholders.
               </p>
               <p>
-                Beyond the world of code and tech, I'm also keenly focused on maintaining a healthy balance in life. Staying active is a big part of that - whether it's hitting the weights at the gym, practicing kickboxing moves, or immersing myself in nature on a hike. But it's not just about physical fitness; these activities also play a crucial role in my mental well-being. They act as stress-busters, energy boosters, and provide me with the clarity and peace of mind that is so essential in our fast-paced world. This harmony between body and mind keeps me energized and ready for all the exciting projects and explorations in the tech realm!
+                Outside of work I'm passionate about the Laravel community and open-source, and I've been increasingly focused on AI and how it's changing the way we build software. When I'm not at a keyboard I'm usually at the gym, training kickboxing, or out on a hike.
               </p>
             </div>
           </div>

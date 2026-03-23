@@ -103,10 +103,10 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'FINN Partners',
+      company: 'FINN Partners UK',
       title: 'Partner, Head of Development',
       logo: logoMintTwist,
-      start: '2020',
+      start: '2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
@@ -178,12 +178,12 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="Jethro May, a London-based Web Developer with more than 12 years' experience. Specializing in Laravel, Livewire, AlpineJS, Tailwind and WordPress for dynamic web solutions."
+          content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions."
         />
         <meta property="og:url" content="https://jethromay.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Jethro May" />
-        <meta property="og:description" content="Jethro May, a London-based Web Developer with more than 12 years' experience. Specializing in Laravel, Livewire, AlpineJS, Tailwind and WordPress for dynamic web solutions." />
+        <meta property="og:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <StructuredData
@@ -203,7 +203,7 @@ export default function Home({ articles }) {
           jobTitle: 'Partner, Head of Development',
           worksFor: {
             '@type': 'Organization',
-            name: 'FINN Partners',
+            name: 'FINN Partners UK',
           },
           image: 'https://jethromay.com/me.jpg',
           sameAs: [
@@ -219,7 +219,7 @@ export default function Home({ articles }) {
             Hey, I'm Jethro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I am a web developer and entrepreneur with more than 12 years of experience, currently based in London, United Kingdom.
+            I'm a technology leader with 12+ years of experience in PHP, leading global development teams at FINN Partners UK in London.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
