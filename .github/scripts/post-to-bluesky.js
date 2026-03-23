@@ -5,6 +5,7 @@ const files = (process.env.NEW_ARTICLE_FILES || '').trim().split(/\s+/).filter(B
 function extractMeta(content) {
   const titleMatch = content.match(/title:\s*"([^"]+)"/) || content.match(/title:\s*'([^']+)'/)
   const descriptionMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/)
+  const hookMatch = content.match(/hook:\s*`([\s\S]*?)`/) || content.match(/hook:\s*"([^"]+)"/) || content.match(/hook:\s*'([^']+)'/)
   const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/)
   const tags = tagsMatch
     ? tagsMatch[1].match(/['"]([^'"]+)['"]/g).map((t) => t.replace(/['"]/g, ''))
@@ -12,6 +13,7 @@ function extractMeta(content) {
   return {
     title: titleMatch?.[1] ?? null,
     description: descriptionMatch?.[1] ?? null,
+    hook: hookMatch?.[1]?.trim() ?? null,
     tags,
   }
 }
@@ -54,24 +56,50 @@ async function uploadThumb(accessJwt, title, description) {
   return blob
 }
 
-async function post(accessJwt, did, { title, description, url, tags }) {
+async function createRecord(accessJwt, did, record) {
+  const res = await fetch('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessJwt}`,
+    },
+    body: JSON.stringify({ repo: did, collection: 'app.bsky.feed.post', record }),
+  })
+  if (!res.ok) throw new Error(`Post error: ${await res.text()}`)
+  return res.json()
+}
+
+async function post(accessJwt, did, { title, description, hook, url, tags }) {
   const encoder = new TextEncoder()
+
+  // First post: native text only — no link, no embed (better reach)
+  // Uses `hook` from meta if present, falls back to title + description
+  const nativeText = hook ?? `${title}\n\n${description ?? ''}`
+  const graphemeCount = [...nativeText].length
+  if (graphemeCount > 300) {
+    throw new Error(`Native post text is ${graphemeCount} graphemes — Bluesky limit is 300. Shorten the hook in the article meta.`)
+  }
+  const firstRecord = {
+    $type: 'app.bsky.feed.post',
+    text: nativeText,
+    createdAt: new Date().toISOString(),
+  }
+  const firstPost = await createRecord(accessJwt, did, firstRecord)
+
+  // Reply post: link + hashtags + embed card, threaded under the first
   const hashtagLine = tags.length ? '\n\n' + tags.map((t) => `#${t}`).join(' ') : ''
-  const text = `New article: ${title}\n\n${url}${hashtagLine}`
+  const replyText = `${url}${hashtagLine}`
 
-  const urlPrefix = `New article: ${title}\n\n`
-  const byteStart = encoder.encode(urlPrefix).length
-  const byteEnd = byteStart + encoder.encode(url).length
-
+  const urlByteEnd = encoder.encode(url).length
   const facets = [
     {
-      index: { byteStart, byteEnd },
+      index: { byteStart: 0, byteEnd: urlByteEnd },
       features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
     },
   ]
 
   if (tags.length) {
-    let offset = encoder.encode(`New article: ${title}\n\n${url}\n\n`).length
+    let offset = encoder.encode(`${url}\n\n`).length
     for (const tag of tags) {
       const tagText = `#${tag}`
       const tagStart = offset
@@ -84,32 +112,29 @@ async function post(accessJwt, did, { title, description, url, tags }) {
     }
   }
 
-  const record = {
+  const replyRef = {
+    root: { uri: firstPost.uri, cid: firstPost.cid },
+    parent: { uri: firstPost.uri, cid: firstPost.cid },
+  }
+
+  const replyRecord = {
     $type: 'app.bsky.feed.post',
-    text,
+    text: replyText,
     facets,
+    reply: replyRef,
     embed: {
       $type: 'app.bsky.embed.external',
       external: {
         uri: url,
         title,
         description: description ?? '',
-        ...(await uploadThumb(accessJwt, title, description).then((thumb) => thumb ? { thumb } : {})),
+        ...(await uploadThumb(accessJwt, title, description).then((thumb) => (thumb ? { thumb } : {}))),
       },
     },
     createdAt: new Date().toISOString(),
   }
 
-  const res = await fetch('https://bsky.social/xrpc/com.atproto.repo.createRecord', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessJwt}`,
-    },
-    body: JSON.stringify({ repo: did, collection: 'app.bsky.feed.post', record }),
-  })
-  if (!res.ok) throw new Error(`Post error: ${await res.text()}`)
-  return res.json()
+  return createRecord(accessJwt, did, replyRecord)
 }
 
 async function main() {
@@ -137,7 +162,7 @@ async function main() {
 
     console.log(`Posting: ${meta.title}`)
     const result = await post(session.accessJwt, session.did, { ...meta, url })
-    console.log(`Posted: ${result.uri}`)
+    console.log(`Posted thread reply: ${result.uri}`)
   }
 }
 
