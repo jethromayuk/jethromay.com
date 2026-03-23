@@ -49,6 +49,15 @@ export default function About() {
           name="description"
           content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions."
         />
+        <meta property="og:url" content="https://jethromay.com/about" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content="About - Jethro May" />
+        <meta property="og:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
+        <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About - Jethro May" />
+        <meta name="twitter:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
+        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <StructuredData
         data={{

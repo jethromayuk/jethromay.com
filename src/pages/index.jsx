@@ -185,6 +185,10 @@ export default function Home({ articles }) {
         <meta property="og:title" content="Jethro May" />
         <meta property="og:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Jethro May" />
+        <meta name="twitter:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
+        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <StructuredData
         data={{

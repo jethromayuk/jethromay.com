@@ -34,6 +34,15 @@ export default function Uses() {
           name="description"
           content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes."
         />
+        <meta property="og:url" content="https://jethromay.com/uses" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Uses - Jethro May" />
+        <meta property="og:description" content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes." />
+        <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Uses - Jethro May" />
+        <meta name="twitter:description" content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes." />
+        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <SimpleLayout
         title="Software I use."
