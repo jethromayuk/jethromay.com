@@ -4,6 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { StructuredData } from '@/components/StructuredData'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -48,6 +49,25 @@ export default function About() {
           content="I’m Jethro May. I live in London, United Kingdom, where I build the future."
         />
       </Head>
+      <StructuredData
+        data={{
+          ‘@context’: ‘https://schema.org’,
+          ‘@type’: ‘Person’,
+          name: ‘Jethro May’,
+          url: ‘https://jethromay.com’,
+          jobTitle: ‘Partner, Head of Development’,
+          worksFor: {
+            ‘@type’: ‘Organization’,
+            name: ‘FINN Partners’,
+          },
+          image: ‘https://jethromay.com/me.jpg’,
+          sameAs: [
+            ‘https://github.com/jethromayuk/’,
+            ‘https://www.linkedin.com/in/jethromay/’,
+            ‘https://bsky.app/profile/jethromay.bsky.social’,
+          ],
+        }}
+      />
       <Container className="mt-16 sm:mt-32">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
           <div className="lg:pl-20">

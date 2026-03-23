@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { StructuredData } from '@/components/StructuredData'
 import {
   GitHubIcon,
   LinkedInIcon,
@@ -185,6 +186,33 @@ export default function Home({ articles }) {
         <meta property="og:description" content="Jethro May, a London-based Web Developer with more than 12 years' experience. Specializing in Laravel, Livewire, AlpineJS, Tailwind and WordPress for dynamic web solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
       </Head>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Jethro May',
+          url: 'https://jethromay.com',
+        }}
+      />
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Jethro May',
+          url: 'https://jethromay.com',
+          jobTitle: 'Partner, Head of Development',
+          worksFor: {
+            '@type': 'Organization',
+            name: 'FINN Partners',
+          },
+          image: 'https://jethromay.com/me.jpg',
+          sameAs: [
+            'https://github.com/jethromayuk/',
+            'https://www.linkedin.com/in/jethromay/',
+            'https://bsky.app/profile/jethromay.bsky.social',
+          ],
+        }}
+      />
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">

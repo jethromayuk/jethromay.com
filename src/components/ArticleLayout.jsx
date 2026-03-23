@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import { Prose } from '@/components/Prose'
+import { StructuredData } from '@/components/StructuredData'
 import { formatDate } from '@/lib/formatDate'
 
 function ArrowLeftIcon(props) {
@@ -30,12 +31,59 @@ export function ArticleLayout({
     return children
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const articleUrl = `${baseUrl}${router.asPath}`
+
   return (
     <>
       <Head>
         <title>{`${meta.title} - Jethro May`}</title>
         <meta name="description" content={meta.description} />
       </Head>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: meta.title,
+          description: meta.description,
+          datePublished: meta.date,
+          author: {
+            '@type': 'Person',
+            name: 'Jethro May',
+            url: baseUrl,
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': articleUrl,
+          },
+        }}
+      />
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: baseUrl,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Articles',
+              item: `${baseUrl}/articles`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: meta.title,
+              item: articleUrl,
+            },
+          ],
+        }}
+      />
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
