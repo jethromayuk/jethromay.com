@@ -90,8 +90,8 @@ module.exports = {
           color: 'var(--tw-prose-body)',
           lineHeight: theme('lineHeight.7'),
           '> *': {
-            marginTop: theme('spacing.10'),
-            marginBottom: theme('spacing.10'),
+            marginTop: theme('spacing.7'),
+            marginBottom: theme('spacing.7'),
           },
           p: {
             marginTop: theme('spacing.7'),
@@ -106,13 +106,13 @@ module.exports = {
           h2: {
             fontSize: theme('fontSize.xl')[0],
             lineHeight: theme('lineHeight.7'),
-            marginTop: theme('spacing.20'),
+            marginTop: theme('spacing.10'),
             marginBottom: theme('spacing.4'),
           },
           h3: {
             fontSize: theme('fontSize.base')[0],
             lineHeight: theme('lineHeight.7'),
-            marginTop: theme('spacing.10'),
+            marginTop: theme('spacing.7'),
             marginBottom: theme('spacing.4'),
           },
           ':is(h2, h3) + *': {
