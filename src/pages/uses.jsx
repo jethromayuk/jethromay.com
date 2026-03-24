@@ -32,62 +32,68 @@ export default function Uses() {
         <title>Uses - Jethro May</title>
         <meta
           name="description"
-          content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes."
+          content="Inspired by Wes Bos, Freek Murze and many others, here's the software and services I rely on day-to-day. I'll keep this updated as my workflow evolves."
         />
         <link rel="canonical" href="https://jethromay.com/uses" />
         <meta property="og:url" content="https://jethromay.com/uses" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Uses - Jethro May" />
-        <meta property="og:description" content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes." />
+        <meta property="og:description" content="Inspired by Wes Bos, Freek Murze and many others, here's the software and services I rely on day-to-day. I'll keep this updated as my workflow evolves." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Uses - Jethro May" />
-        <meta name="twitter:description" content="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes." />
+        <meta name="twitter:description" content="Inspired by Wes Bos, Freek Murze and many others, here's the software and services I rely on day-to-day. I'll keep this updated as my workflow evolves." />
         <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <SimpleLayout
         title="Software I use."
-        intro="Inspired by Wes Bos, Freek Murze and many others I've put together this list of hardware, software and services that I use on a day-to-day basis. I will keep this list updated as my workflow changes. "
+        intro="Inspired by Wes Bos, Freek Murze and many others, here's the software and services I rely on day-to-day. I'll keep this updated as my workflow evolves."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="14” MacBook M3 Pro, 32GB RAM, 1TB SSD">
-                This is my every day development machine that I use for both work and personal projects.
+            <Tool title=”14” MacBook M3 Pro, 32GB RAM, 1TB SSD”>
+                My everyday machine for both leading the team and getting hands-on with code. More than enough power for everything I throw at it.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
             <Tool title="PHPStorm">
-                I've returned to using PHPStorm after a number of years on Visual Studio Code. Nothing compares to the power that PHPStorm offers.
+                I came back to PHPStorm after a few years on VS Code. When you're reviewing pull requests, debugging production issues, and jumping between projects all day, nothing else comes close.
             </Tool>
             <Tool title="Warp">
-                Easy to use, ridiculously fast and it comes with game changing features.
+                Fast, clean, and packed with features that actually save time. It's become a core part of how I work.
+            </Tool>
+            <Tool title="Claude Code">
+                An AI-powered coding assistant that lives in my terminal. I use it for everything from scaffolding features to refactoring and debugging — it's genuinely changed how I approach day-to-day development.
             </Tool>
             <Tool title="TablePlus">
-                Sequel Pro was my go-to database management tool for some time, however development slowed down and I needed a stable database client. TablePlus also supports multiple drivers such as Redis & SQLite, to name a few.
+                A solid, reliable database client that supports everything I need — MySQL, Redis, SQLite, and more. Clean interface that stays out of the way when I'm troubleshooting data issues across projects.
+            </Tool>
+            <Tool title="GitHub">
+                Where all our code lives. I moved the team here from GitLab and BitBucket years ago — the workflow, integrations, and ecosystem for open-source make it the obvious choice.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Design">
             <Tool title="Sip">
-                An easy to use color picker, that works across apps and websites. 
+                A simple colour picker that works across apps and websites. Handy when I'm reviewing designs or checking brand consistency across projects.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="Raycast">
-                I was previously a long time Alfred user, however, this year I switched to Raycast which is one less subscription to pay for. Its also extremely powerful and offers a lot of features that I didn't previously have.
+                Replaced Alfred and never looked back. It's fast, free, and the extensions ecosystem means I can automate a lot of the repetitive stuff that comes with managing multiple projects.
+            </Tool>
+            <Tool title="CleanShot X">
+                The best screenshot tool on Mac, full stop. Annotations, scrolling capture, and quick sharing make it invaluable for bug reports, feedback, and documenting work for the team.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Hosting">
-            <Tool title="Github">
-                I store all of my code on GitHub, having transitioned from GitLab and BitBucket due to various issues I encountered with these platforms. GitHub not only offers ease of use but also stands as the industry standard platform for open-source projects.
-            </Tool>
             <Tool title="Vercel">
-                I opt for Vercel as my hosting platform when my projects necessitate robust static site hosting and seamless integration of serverless functions.
+                My go-to for static sites and serverless functions. The deployment pipeline is effortless, which means less time on infrastructure and more time on the work that matters.
             </Tool>
-            <Tool title="Digital Ocean">
-                I host on DigitalOcean because it provides a highly scalable and flexible infrastructure with robust performance, coupled with an intuitive interface and competitive pricing, all of which greatly enhance my overall hosting experience.
+            <Tool title="Hetzner">
+                Excellent price-to-performance, reliable infrastructure, and straightforward server management. A strong choice for projects where you need more control than a managed platform gives you.
             </Tool>
-            <Tool title="Namecheap">
-                I have registered all of my domains through Namecheap; not only are their services affordable, but their user interface is also exceptionally easy to navigate.
+            <Tool title="Cloudflare">
+                I manage all my domains through Cloudflare. Lightning-fast DNS, solid security features, and zero-markup domain pricing make it a no-brainer.
             </Tool>
           </ToolsSection>
         </div>
