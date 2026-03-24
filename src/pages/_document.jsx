@@ -43,6 +43,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0d9488" />
+        <meta property="og:site_name" content="Jethro May" />
         <link
           rel="alternate"
           type="application/rss+xml"

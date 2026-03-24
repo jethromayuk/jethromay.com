@@ -21,7 +21,7 @@ function generateSitemap(articles) {
       (article) => `
   <url>
     <loc>${baseUrl}/articles/${article.slug}</loc>
-    <lastmod>${article.date}</lastmod>
+    <lastmod>${article.updated || article.date}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>`

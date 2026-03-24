@@ -43,7 +43,7 @@ export async function generateRssFeed() {
       content: html,
       author: [author],
       contributor: [author],
-      date: new Date(article.date),
+      date: new Date(article.updated || article.date),
     })
   }
 

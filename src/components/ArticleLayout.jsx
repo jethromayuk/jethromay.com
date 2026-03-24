@@ -51,6 +51,7 @@ export function ArticleLayout({
         <meta name="twitter:title" content={`${meta.title} - Jethro May`} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={`${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description)}`} />
+        <meta property="og:site_name" content="Jethro May" />
       </Head>
       <StructuredData
         data={{
@@ -59,7 +60,14 @@ export function ArticleLayout({
           headline: meta.title,
           description: meta.description,
           datePublished: meta.date,
+          dateModified: meta.updated || meta.date,
+          image: `${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description?.slice(0, 100) || '')}`,
           author: {
+            '@type': 'Person',
+            name: 'Jethro May',
+            url: baseUrl,
+          },
+          publisher: {
             '@type': 'Person',
             name: 'Jethro May',
             url: baseUrl,

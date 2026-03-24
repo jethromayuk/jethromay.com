@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { StructuredData } from '@/components/StructuredData'
 import { formatDate } from '@/lib/formatDate'
 import { getAllArticles } from '@/lib/getAllArticles'
 
@@ -54,6 +55,25 @@ export default function ArticlesIndex({ articles }) {
         <meta name="twitter:description" content="Articles on web development, engineering leadership, and technology by Jethro May." />
         <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Articles - Jethro May',
+          description:
+            'Articles on web development, engineering leadership, and technology by Jethro May.',
+          url: 'https://jethromay.com/articles',
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: articles.map((article, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              url: `https://jethromay.com/articles/${article.slug}`,
+              name: article.title,
+            })),
+          },
+        }}
+      />
       <SimpleLayout
         title="Sometimes, I write blog posts about things I find interesting."
         intro="I don't publish them frequently, but when I do, I post them here."

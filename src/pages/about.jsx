@@ -41,6 +41,8 @@ function MailIcon(props) {
 }
 
 export default function About() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+
   return (
     <>
       <Head>
@@ -49,29 +51,29 @@ export default function About() {
           name="description"
           content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions."
         />
-        <link rel="canonical" href="https://jethromay.com/about" />
-        <meta property="og:url" content="https://jethromay.com/about" />
+        <link rel="canonical" href={`${baseUrl}/about`} />
+        <meta property="og:url" content={`${baseUrl}/about`} />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="About - Jethro May" />
         <meta property="og:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
-        <meta property="og:image" content="https://jethromay.com/me.jpg" />
+        <meta property="og:image" content={`${baseUrl}/me.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About - Jethro May" />
         <meta name="twitter:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
-        <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
+        <meta name="twitter:image" content={`${baseUrl}/me.jpg`} />
       </Head>
       <StructuredData
         data={{
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Jethro May',
-          url: 'https://jethromay.com',
+          url: baseUrl,
           jobTitle: 'Partner, Head of Development',
           worksFor: {
             '@type': 'Organization',
             name: 'FINN Partners UK',
           },
-          image: 'https://jethromay.com/me.jpg',
+          image: `${baseUrl}/me.jpg`,
           sameAs: [
             'https://github.com/jethromayuk/',
             'https://www.linkedin.com/in/jethromay/',

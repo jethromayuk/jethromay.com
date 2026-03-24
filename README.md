@@ -42,8 +42,11 @@ Articles are MDX files in `src/pages/articles/`. Each file must export a `meta` 
 export const meta = {
   author: 'Jethro May',
   date: '2024-01-01',
+  updated: '2024-02-15', // optional — used for dateModified in structured data
   title: 'Article Title',
   description: 'Short description',
+  tags: ['webdev', 'AI'],  // optional
+  hook: 'Teaser copy for social sharing', // optional
 }
 ```
 

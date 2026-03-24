@@ -174,7 +174,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Jethro May
+          Jethro May — Engineering Leader &amp; Web Developer in London
         </title>
         <meta
           name="description"
@@ -183,11 +183,11 @@ export default function Home({ articles }) {
         <link rel="canonical" href="https://jethromay.com" />
         <meta property="og:url" content="https://jethromay.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Jethro May" />
+        <meta property="og:title" content="Jethro May — Engineering Leader & Web Developer in London" />
         <meta property="og:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Jethro May" />
+        <meta name="twitter:title" content="Jethro May — Engineering Leader & Web Developer in London" />
         <meta name="twitter:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
         <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
