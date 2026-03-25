@@ -49,17 +49,17 @@ export default function About() {
         <title>About - Jethro May</title>
         <meta
           name="description"
-          content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions."
+          content="Technology leader and Partner at FINN Partners UK, leading global development teams and building AI-first engineering workflows. Writing about engineering leadership and scaling agency dev teams."
         />
         <link rel="canonical" href={`${baseUrl}/about`} />
         <meta property="og:url" content={`${baseUrl}/about`} />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="About - Jethro May" />
-        <meta property="og:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
+        <meta property="og:description" content="Technology leader and Partner at FINN Partners UK, leading global development teams and building AI-first engineering workflows. Writing about engineering leadership and scaling agency dev teams." />
         <meta property="og:image" content={`${baseUrl}/me.jpg`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About - Jethro May" />
-        <meta name="twitter:description" content="Technology leader with 12+ years of PHP expertise. Partner, Head of Development at FINN Partners UK, leading global development teams and architecting scalable enterprise solutions." />
+        <meta name="twitter:description" content="Technology leader and Partner at FINN Partners UK, leading global development teams and building AI-first engineering workflows. Writing about engineering leadership and scaling agency dev teams." />
         <meta name="twitter:image" content={`${baseUrl}/me.jpg`} />
       </Head>
       <StructuredData
@@ -99,13 +99,13 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I'm Partner, Head of Development at <Link href="https://finnpartners.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-teal-500">FINN Partners UK</Link>, a globally distributed agency with offices around the world. I lead and coordinate a globally distributed development team, managing projects across the full spectrum — from small-scale implementations to complex enterprise solutions.
+                I'm Partner, Head of Development at <Link href="https://finnpartners.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-teal-500">FINN Partners UK</Link>, a globally distributed agency with offices around the world. I lead and coordinate a globally distributed development team, managing projects across the full spectrum — from rapid internal tools to large-scale client platforms.
               </p>
               <p>
                 My work spans technical consultation with key clients, translating complex requirements into scalable solutions, partnering with project management and stakeholders on goals and deliverables, and bridging the gap between technical teams and business stakeholders.
               </p>
               <p>
-                Outside of work I'm passionate about the Laravel community and open-source, and I've been increasingly focused on AI and how it's changing the way we build software. When I'm not at a keyboard I'm usually at the gym, training kickboxing, or out on a hike.
+                Outside of work I'm passionate about open-source and AI-first development — how AI is fundamentally changing the way we build software. When I'm not at a keyboard I'm usually at the gym, training kickboxing, or out on a hike.
               </p>
             </div>
           </div>

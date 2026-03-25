@@ -178,17 +178,17 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions."
+          content="Jethro May is a technology leader and Partner at FINN Partners UK, leading global development teams in London. Writing about engineering leadership, AI-first development, and building high-performing agency dev teams."
         />
         <link rel="canonical" href="https://jethromay.com" />
         <meta property="og:url" content="https://jethromay.com" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Jethro May — Engineering Leader & Web Developer in London" />
-        <meta property="og:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
+        <meta property="og:description" content="Jethro May is a technology leader and Partner at FINN Partners UK, leading global development teams in London. Writing about engineering leadership, AI-first development, and building high-performing agency dev teams." />
         <meta property="og:image" content="https://jethromay.com/me.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Jethro May — Engineering Leader & Web Developer in London" />
-        <meta name="twitter:description" content="Jethro May is a technology leader with 12+ years of experience, leading global development teams at FINN Partners UK in London. Specializing in Laravel and WordPress enterprise solutions." />
+        <meta name="twitter:description" content="Jethro May is a technology leader and Partner at FINN Partners UK, leading global development teams in London. Writing about engineering leadership, AI-first development, and building high-performing agency dev teams." />
         <meta name="twitter:image" content="https://jethromay.com/me.jpg" />
       </Head>
       <StructuredData
@@ -224,7 +224,7 @@ export default function Home({ articles }) {
             Hey, I'm Jethro.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm a technology leader with 12+ years of experience in PHP, leading global development teams at FINN Partners UK in London.
+            I'm a technology leader building AI-first development teams at FINN Partners UK in London.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
