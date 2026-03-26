@@ -9,6 +9,20 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/posts/:slug*',
+        destination: '/articles',
+        permanent: true,
+      },
+      {
+        source: '/articles/undefined/:path*',
+        destination: '/',
+        permanent: false,
+      },
+    ]
+  },
   async headers() {
     return [
       {
