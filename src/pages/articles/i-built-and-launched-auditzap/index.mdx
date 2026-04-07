@@ -1,0 +1,51 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Jethro May',
+  date: '2026-04-07',
+  title: 'I Built and Launched AuditZap',
+  description:
+    'I built an AI-powered website audit tool as a solo side project and launched it on Product Hunt. Here\'s what I built, why, and what I learned.',
+  hook: `I launched AuditZap today — a website audit tool that tells you what's wrong with your site and how to fix it, specific to your CMS.
+
+Built it solo over 3 months, from first commit to Product Hunt launch. Here's the honest version of how it went.`,
+  tags: ['webdev', 'AI', 'side-project'],
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+I launched [AuditZap](https://auditzap.io) today. It's a website audit tool that runs 24 checks across SEO, performance, and site health — and uses AI to generate fix instructions specific to your CMS. WordPress, Shopify, Webflow, whatever you're running.
+
+The idea came from client work. Every audit tool I used did the same thing: here are your 47 issues. Good luck. The gap was always the next step — which issues actually matter, and what do I do about them? That's what AuditZap tries to solve.
+
+## How it works
+
+You enter a URL. The app crawls your site (up to 50 pages on Pro), runs the checks, and batches every failed result into a single Claude API call. One prompt, one response, all the fix instructions. That single-call approach keeps the AI cost to about $0.03 per audit.
+
+The checks themselves are pure functions — no side effects, no database calls. Take crawl data in, return a structured result. That made testing straightforward: 553 tests run in under 5 seconds with no Docker, no database, no Redis.
+
+## The stack
+
+Next.js 15, TypeScript strict, Drizzle + Postgres, BullMQ + Redis, Puppeteer for crawling, Claude for AI, Lemon Squeezy for payments. Self-hosted on two Hetzner boxes at roughly $20/month total — one for production, one for staging.
+
+I considered Vercel but the combination of Puppeteer (needs a real browser), BullMQ (needs persistent Redis), and background workers made self-hosting the better fit. DeployHQ handles auto-deploys on push.
+
+## Free tools
+
+I built 9 free tool pages — broken link checker, Core Web Vitals, alt text, Open Graph, and more. No signup, no database writes, results in a couple of seconds. Each one targets a long-tail SEO query. Free marketing that also gives people a reason to come back.
+
+## What I'd do differently
+
+**Ship earlier.** I spent time on things that didn't need to be perfect for launch — PDF report styling, email template polish, edge cases that affect 1% of audits. The checks and the AI instructions are the product. Everything else is secondary.
+
+**Set up monitoring from day one.** I added Sentry late and spent a morning retrofitting it into the worker, the crons, the API routes. If I'd done it from the start it would have taken a fraction of the time.
+
+**Don't underestimate auth.** Better Auth is good, but email verification, OAuth, two-factor, password reset, session management — it's a lot of surface area. Every auth feature touches multiple pages and multiple API routes. Budget more time for it than you think.
+
+## What's next
+
+Per-page affected URLs in audit results, so you can see exactly which pages have which issues. Password change in settings. And whatever people ask for — the whole point of launching is to find out what matters to users that I haven't thought of.
+
+If you want to try it, the free tools work without signing up: [auditzap.io/tools](https://auditzap.io/tools).
+
+If you want to support the launch, we're on [Product Hunt today](https://www.producthunt.com/posts/auditzap).
