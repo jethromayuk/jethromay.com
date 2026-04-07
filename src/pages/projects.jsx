@@ -4,9 +4,18 @@ import Image from 'next/image'
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { StructuredData } from '@/components/StructuredData'
+import logoAuditZap from '@/images/logos/auditzap.svg'
 import logoHygieneScout from '@/images/logos/hygienescout.svg'
 
 const projects = [
+  {
+    name: 'AuditZap',
+    description:
+      'AI-powered website audits with CMS-specific fix instructions. 24 checks across SEO, performance, and site health, ranked by revenue impact.',
+    link: { href: 'https://auditzap.io', label: 'auditzap.io' },
+    logo: logoAuditZap,
+    tech: ['Next.js', 'TypeScript', 'Drizzle ORM', 'BullMQ', 'Claude AI'],
+  },
   {
     name: 'HygieneScout',
     description:
