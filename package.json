@@ -21,16 +21,16 @@
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.5.11",
     "@tailwindcss/typography": "^0.5.19",
-    "autoprefixer": "^10.4.22",
+    "autoprefixer": "^10.4.27",
     "clsx": "^1.2.1",
     "feed": "^4.2.2",
     "focus-visible": "^5.2.1",
     "next": "15.4.10",
     "postcss-focus-visible": "^6.0.4",
-    "react": "19",
-    "react-dom": "19",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "remark-gfm": "^3.0.1",
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.1",
