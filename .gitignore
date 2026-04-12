@@ -35,6 +35,8 @@ yarn-error.log*
 
 # claude code
 .claude/
+.playwright-mcp/
+/*.png
 
 # generated files
 /public/rss/
