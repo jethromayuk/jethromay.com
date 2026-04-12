@@ -1,7 +1,22 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2022": true
+  },
+  "settings": {
+    "react": { "version": "detect" }
+  },
   "rules": {
     "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
-  }
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": [".next", ".open-next", "node_modules", "src/lib/articles.generated.js", "open-next.config.ts"]
 }
