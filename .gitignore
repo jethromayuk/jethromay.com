@@ -28,8 +28,14 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# vercel
-.vercel
+# cloudflare
+.open-next
+.dev.vars
+.wrangler
+
+# claude code
+.claude/
 
 # generated files
 /public/rss/
+/src/lib/articles.generated.js

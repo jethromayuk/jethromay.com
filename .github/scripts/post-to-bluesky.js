@@ -39,7 +39,7 @@ async function createSession() {
 }
 
 async function uploadThumb(accessJwt, title, description) {
-  const ogUrl = `${process.env.SITE_URL}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description ?? '')}`
+  const ogUrl = `${process.env.SITE_URL}/og.png`
   const imageRes = await fetch(ogUrl)
   if (!imageRes.ok) return null
   const imageBuffer = await imageRes.arrayBuffer()

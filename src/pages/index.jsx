@@ -15,7 +15,6 @@ import logoJJAndPartners from '@/images/logos/jj-and-partners.svg'
 import logoMintTwist from '@/images/logos/minttwist.svg'
 import logoPlusNarrative from '@/images/logos/plusnarrative.svg'
 import { formatDate } from '@/lib/formatDate'
-import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 
 function MailIcon(props) {
@@ -262,7 +261,9 @@ export default function Home({ articles }) {
 }
 
 export async function getStaticProps() {
-  if (process.env.NODE_ENV === 'production') {
+  // RSS generation writes to disk — only safe during `next build`, not in the Worker runtime.
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    const { generateRssFeed } = await import('@/lib/generateRssFeed')
     await generateRssFeed()
   }
 

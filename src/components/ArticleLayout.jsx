@@ -25,12 +25,18 @@ export function ArticleLayout({
   isRssFeed = false,
   previousPathname,
 }) {
-  let router = useRouter()
-
   if (isRssFeed) {
     return children
   }
+  return (
+    <ArticleLayoutInner meta={meta} previousPathname={previousPathname}>
+      {children}
+    </ArticleLayoutInner>
+  )
+}
 
+function ArticleLayoutInner({ children, meta, previousPathname }) {
+  let router = useRouter()
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
   const articleUrl = `${baseUrl}${router.asPath}`
 
@@ -44,13 +50,13 @@ export function ArticleLayout({
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`${meta.title} - Jethro May`} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={`${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description)}`} />
+        <meta property="og:image" content={`${baseUrl}/og.png`} />
         <meta property="article:published_time" content={meta.date} />
         <meta property="article:author" content="Jethro May" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${meta.title} - Jethro May`} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={`${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description)}`} />
+        <meta name="twitter:image" content={`${baseUrl}/og.png`} />
         <meta property="og:site_name" content="Jethro May" />
       </Head>
       <StructuredData
@@ -61,7 +67,7 @@ export function ArticleLayout({
           description: meta.description,
           datePublished: meta.date,
           dateModified: meta.updated || meta.date,
-          image: `${baseUrl}/api/og?title=${encodeURIComponent(meta.title)}&description=${encodeURIComponent(meta.description?.slice(0, 100) || '')}`,
+          image: `${baseUrl}/og.png`,
           author: {
             '@type': 'Person',
             name: 'Jethro May',
