@@ -1,0 +1,29 @@
+---
+import Container from '@/components/Container.astro'
+---
+
+<footer class="mt-32">
+  <Container variant="outer">
+    <div class="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
+      <Container variant="inner">
+        <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          <div class="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
+            <a
+              href="/about"
+              class="rounded-xs transition hover:text-teal-500 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-hidden dark:hover:text-teal-400"
+              >About</a
+            >
+            <a
+              href="/uses"
+              class="rounded-xs transition hover:text-teal-500 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-hidden dark:hover:text-teal-400"
+              >Uses</a
+            >
+          </div>
+          <p class="text-sm text-zinc-400 dark:text-zinc-500">
+            &copy; {new Date().getFullYear()} Jethro May. All rights reserved.
+          </p>
+        </div>
+      </Container>
+    </div>
+  </Container>
+</footer>

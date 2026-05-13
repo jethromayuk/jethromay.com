@@ -1,0 +1,15 @@
+---
+// Card root — wraps title/eyebrow/description/cta children in a styled flex column.
+// Use the variant pieces (CardTitle, CardEyebrow, CardDescription, CardCta) as separate components.
+interface Props {
+  as?: string
+  class?: string
+}
+const { as: Tag = 'div', class: extra = '' } = Astro.props as Props & {
+  as?: keyof HTMLElementTagNameMap
+}
+---
+
+<Tag class={`group relative flex flex-col items-start ${extra}`}>
+  <slot />
+</Tag>

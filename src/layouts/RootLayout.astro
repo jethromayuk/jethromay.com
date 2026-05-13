@@ -1,0 +1,120 @@
+---
+import '@/styles/tailwind.css'
+import Header from '@/components/Header.tsx'
+import Footer from '@/components/Footer.astro'
+
+interface Props {
+  title: string
+  description: string
+  canonical?: string
+  ogType?: string
+  ogImage?: string
+}
+
+const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogType = 'website',
+  ogImage = `${SITE_URL}/me.jpg`,
+} = Astro.props
+
+// The dark-mode init script must run synchronously in <head> before <body>
+// paints, otherwise a flash of the wrong theme is visible on first load.
+const modeScript = `
+  let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+  updateMode()
+  darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
+  window.addEventListener('storage', updateModeWithoutTransitions)
+
+  function updateMode() {
+    let isSystemDarkMode = darkModeMediaQuery.matches
+    let isDarkMode = window.localStorage.isDarkMode === 'true' || (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
+
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+
+    if (isDarkMode === isSystemDarkMode) {
+      delete window.localStorage.isDarkMode
+    }
+  }
+
+  function disableTransitionsTemporarily() {
+    document.documentElement.classList.add('**:transition-none!')
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('**:transition-none!')
+    }, 0)
+  }
+
+  function updateModeWithoutTransitions() {
+    disableTransitionsTemporarily()
+    updateMode()
+  }
+`
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:site_name" content="Jethro May" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#0d9488" />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Jethro May"
+      href={`${SITE_URL}/rss.xml`}
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script is:inline set:html={modeScript} />
+
+    <slot name="head" />
+  </head>
+  <body class="flex h-full flex-col bg-zinc-50 dark:bg-black">
+    <div class="fixed inset-0 flex justify-center sm:px-8">
+      <div class="flex w-full max-w-7xl lg:px-8">
+        <div
+          class="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20"
+        >
+        </div>
+      </div>
+    </div>
+    <div class="relative">
+      <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-zinc-900 focus:shadow-lg focus:ring-2 focus:ring-teal-500 dark:focus:bg-zinc-900 dark:focus:text-zinc-100"
+      >
+        Skip to content
+      </a>
+      <Header pathname={Astro.url.pathname} client:load />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

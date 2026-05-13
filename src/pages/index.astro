@@ -1,0 +1,238 @@
+---
+import { getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Container from '@/components/Container.astro'
+import Card from '@/components/Card.astro'
+import CardTitle from '@/components/CardTitle.astro'
+import CardEyebrow from '@/components/CardEyebrow.astro'
+import CardDescription from '@/components/CardDescription.astro'
+import CardCta from '@/components/CardCta.astro'
+import Button from '@/components/Button.astro'
+import StructuredData from '@/components/StructuredData.astro'
+import GitHubIcon from '@/components/icons/GitHub.astro'
+import LinkedInIcon from '@/components/icons/LinkedIn.astro'
+import BlueSkyIcon from '@/components/icons/BlueSky.astro'
+import logoMintTwist from '@/images/logos/minttwist.svg'
+import logoPlusNarrative from '@/images/logos/plusnarrative.svg'
+import { formatDate } from '@/lib/formatDate'
+
+const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
+
+const allArticles = await getCollection('articles')
+const articles = allArticles
+  .sort(
+    (a, b) =>
+      new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  )
+  .slice(0, 4)
+
+const resume = [
+  {
+    company: 'FINN Partners UK',
+    title: 'Partner, Head of Development',
+    logo: logoMintTwist,
+    start: '2024',
+    end: { label: 'Present', dateTime: new Date().getFullYear().toString() },
+  },
+  {
+    company: 'PlusNarrative',
+    title: 'Web Developer',
+    logo: logoPlusNarrative,
+    start: '2019',
+    end: '2020',
+  },
+] as const
+
+const title = 'Jethro May — Engineering Leader & Web Developer in London'
+const description =
+  'Jethro May is a technology leader and Partner at FINN Partners UK, leading global development teams in London. Writing about engineering leadership, AI-first development, and building high-performing agency dev teams.'
+---
+
+<RootLayout
+  title={title}
+  description={description}
+  canonical={SITE_URL}
+  ogType="website"
+>
+  <StructuredData
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Jethro May',
+      url: SITE_URL,
+    }}
+  />
+  <StructuredData
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Jethro May',
+      url: SITE_URL,
+      jobTitle: 'Partner, Head of Development',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'FINN Partners UK',
+      },
+      image: `${SITE_URL}/me.jpg`,
+      sameAs: [
+        'https://github.com/jethromayuk/',
+        'https://www.linkedin.com/in/jethromay/',
+        'https://bsky.app/profile/jethromay.bsky.social',
+      ],
+    }}
+  />
+
+  <Container class="mt-9">
+    <div class="max-w-2xl">
+      <h1
+        class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100"
+      >
+        Hey, I'm Jethro.
+      </h1>
+      <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+        I'm a technology leader building AI-first development teams at FINN
+        Partners UK in London.
+      </p>
+      <div class="mt-6 flex gap-6">
+        <a
+          href="https://github.com/jethromayuk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow on GitHub"
+          class="group -m-2 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xs p-2 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-hidden"
+        >
+          <GitHubIcon class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jethromay/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow on LinkedIn"
+          class="group -m-2 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xs p-2 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-hidden"
+        >
+          <LinkedInIcon class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+        </a>
+        <a
+          href="https://bsky.app/profile/jethromay.bsky.social"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow on BlueSky"
+          class="group -m-2 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xs p-2 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-hidden"
+        >
+          <BlueSkyIcon class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+        </a>
+      </div>
+    </div>
+  </Container>
+
+  <Container class="mt-24 md:mt-28">
+    <div
+      class="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2"
+    >
+      <div class="flex flex-col gap-16">
+        {
+          articles.map((article) => (
+            <Card as="article">
+              <CardTitle href={`/articles/${article.id}`}>
+                {article.data.title}
+              </CardTitle>
+              <CardEyebrow as="time" dateTime={article.data.date} decorate>
+                {formatDate(article.data.date)}
+              </CardEyebrow>
+              <CardDescription>{article.data.description}</CardDescription>
+              <CardCta>Read article</CardCta>
+            </Card>
+          ))
+        }
+      </div>
+      <div class="space-y-10 lg:pl-16 xl:pl-24">
+        <div
+          class="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+        >
+          <h2
+            class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="h-6 w-6 flex-none"
+            >
+              <path
+                d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+                class="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+              ></path>
+              <path
+                d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
+                class="stroke-zinc-400 dark:stroke-zinc-500"
+              ></path>
+            </svg>
+            <span class="ml-3">Work</span>
+          </h2>
+          <ol class="mt-6 space-y-4">
+            {
+              resume.map((role) => (
+                <li class="flex gap-4">
+                  <div class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                    <img
+                      src={role.logo.src}
+                      alt={role.company}
+                      class="h-7 w-7"
+                    />
+                  </div>
+                  <dl class="flex flex-auto flex-wrap gap-x-2">
+                    <dt class="sr-only">Company</dt>
+                    <dd class="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                      {role.company}
+                    </dd>
+                    <dt class="sr-only">Role</dt>
+                    <dd class="text-xs text-zinc-500 dark:text-zinc-400">
+                      {role.title}
+                    </dd>
+                    <dt class="sr-only">Date</dt>
+                    <dd
+                      class="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+                      aria-label={`${role.start} until ${typeof role.end === 'string' ? role.end : role.end.label}`}
+                    >
+                      <time datetime={role.start}>{role.start}</time>{' '}
+                      <span aria-hidden="true">—</span>{' '}
+                      <time
+                        datetime={
+                          typeof role.end === 'string'
+                            ? role.end
+                            : role.end.dateTime
+                        }
+                      >
+                        {typeof role.end === 'string' ? role.end : role.end.label}
+                      </time>
+                    </dd>
+                  </dl>
+                </li>
+              ))
+            }
+          </ol>
+          <Button href="/about" variant="secondary" class="group mt-6 w-full">
+            Read More
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+              class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"
+            >
+              <path
+                d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</RootLayout>

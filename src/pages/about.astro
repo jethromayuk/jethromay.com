@@ -1,0 +1,130 @@
+---
+import RootLayout from '@/layouts/RootLayout.astro'
+import Container from '@/components/Container.astro'
+import StructuredData from '@/components/StructuredData.astro'
+import GitHubIcon from '@/components/icons/GitHub.astro'
+import LinkedInIcon from '@/components/icons/LinkedIn.astro'
+import BlueSkyIcon from '@/components/icons/BlueSky.astro'
+import portraitImage from '@/images/portrait.jpg'
+
+const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
+
+const title = 'About - Jethro May'
+const description =
+  'Technology leader and Partner at FINN Partners UK, leading global development teams and building AI-first engineering workflows. Writing about engineering leadership and scaling agency dev teams.'
+---
+
+<RootLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_URL}/about`}
+  ogType="profile"
+>
+  <StructuredData
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Jethro May',
+      url: SITE_URL,
+      jobTitle: 'Partner, Head of Development',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'FINN Partners UK',
+      },
+      image: `${SITE_URL}/me.jpg`,
+      sameAs: [
+        'https://github.com/jethromayuk/',
+        'https://www.linkedin.com/in/jethromay/',
+        'https://bsky.app/profile/jethromay.bsky.social',
+      ],
+    }}
+  />
+  <Container class="mt-16 sm:mt-32">
+    <div
+      class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
+    >
+      <div class="lg:pl-20">
+        <div class="max-w-xs px-2.5 lg:max-w-none">
+          <img
+            src={portraitImage.src}
+            width={portraitImage.width}
+            height={portraitImage.height}
+            alt="Jethro May"
+            sizes="(min-width: 1024px) 32rem, 20rem"
+            class="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+          />
+        </div>
+      </div>
+      <div class="lg:order-first lg:row-span-2">
+        <h1
+          class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100"
+        >
+          I'm Jethro May. I live in London, where I build the future.
+        </h1>
+        <div class="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <p>
+            I'm Partner, Head of Development at <a
+              href="https://finnpartners.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-bold hover:text-teal-500">FINN Partners UK</a
+            >, a globally distributed agency with offices around the world. I
+            lead and coordinate a globally distributed development team,
+            managing projects across the full spectrum — from rapid internal
+            tools to large-scale client platforms.
+          </p>
+          <p>
+            My work spans technical consultation with key clients, translating
+            complex requirements into scalable solutions, partnering with
+            project management and stakeholders on goals and deliverables, and
+            bridging the gap between technical teams and business stakeholders.
+          </p>
+          <p>
+            Outside of work I'm passionate about open-source and AI-first
+            development — how AI is fundamentally changing the way we build
+            software. When I'm not at a keyboard I'm usually at the gym,
+            training kickboxing, or out on a hike.
+          </p>
+        </div>
+      </div>
+      <div class="lg:pl-20">
+        <ul role="list">
+          <li class="mt-4 flex">
+            <a
+              href="https://github.com/jethromayuk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+            >
+              <GitHubIcon class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+              <span class="ml-4">Follow on GitHub</span>
+            </a>
+          </li>
+          <li class="mt-4 flex">
+            <a
+              href="https://www.linkedin.com/in/jethromay/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+            >
+              <LinkedInIcon class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+              <span class="ml-4">Follow on LinkedIn</span>
+            </a>
+          </li>
+          <li class="mt-4 flex">
+            <a
+              href="https://bsky.app/profile/jethromay.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+            >
+              <BlueSkyIcon class="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+              <span class="ml-4">Follow on Bluesky</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Container>
+</RootLayout>
