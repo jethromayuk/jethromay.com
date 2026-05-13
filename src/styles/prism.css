@@ -1,4 +1,18 @@
+/*
+  Pin syntax-highlight colours to sRGB hex values matching the previous
+  Next.js build. Tailwind 4 + @tailwindcss/vite emits these palette tokens
+  as `oklch()`, which renders slightly more vivid on P3 displays — fine
+  for UI, distracting in code blocks. Overriding the vars inside <pre>
+  scope keeps the rest of the design on the modern palette.
+*/
 pre[class*='language-'] {
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-pink-400: #fb64b6;
+  --color-teal-300: #46ecd5;
+  --color-sky-200: #b8e6fe;
   color: var(--color-zinc-100);
 }
 
