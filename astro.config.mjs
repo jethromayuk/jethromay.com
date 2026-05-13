@@ -6,8 +6,7 @@ import react from '@astrojs/react'
 import tailwindcss from '@tailwindcss/vite'
 import rehypePrism from '@mapbox/rehype-prism'
 import remarkGfm from 'remark-gfm'
-
-import cloudflare from '@astrojs/cloudflare';
+import cloudflare from '@astrojs/cloudflare'
 
 const SITE = process.env.PUBLIC_SITE_URL || 'https://jethromay.com'
 
@@ -15,7 +14,7 @@ export default defineConfig({
   site: SITE,
   output: 'static',
   trailingSlash: 'ignore',
-
+  adapter: cloudflare(),
   integrations: [
     mdx({
       remarkPlugins: [remarkGfm],
@@ -26,14 +25,10 @@ export default defineConfig({
       filter: (page) => !page.includes('/rss.xml'),
     }),
   ],
-
   vite: {
     plugins: [tailwindcss()],
   },
-
   markdown: {
     syntaxHighlight: false,
   },
-
-  adapter: cloudflare(),
 })
