@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import SimpleLayout from '@/components/SimpleLayout.astro'
+import Card from '@/components/Card.astro'
+import CardTitle from '@/components/CardTitle.astro'
+import CardEyebrow from '@/components/CardEyebrow.astro'
+import CardDescription from '@/components/CardDescription.astro'
+import CardCta from '@/components/CardCta.astro'
+import StructuredData from '@/components/StructuredData.astro'
+import { formatDate } from '@/lib/formatDate'
+
+const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+)
+
+const title = 'Articles - Jethro May'
+const description =
+  'Articles on web development, engineering leadership, and technology by Jethro May.'
+---
+
+<RootLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_URL}/articles`}
+>
+  <StructuredData
+    slot="head"
+    data={{
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      url: `${SITE_URL}/articles`,
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: articles.map((article, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `${SITE_URL}/articles/${article.id}`,
+          name: article.data.title,
+        })),
+      },
+    }}
+  />
+  <SimpleLayout
+    title="Sometimes, I write blog posts about things I find interesting."
+    intro="I don't publish them frequently, but when I do, I post them here."
+  >
+    <div
+      class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"
+    >
+      <div class="flex max-w-3xl flex-col space-y-16">
+        {
+          articles.map((article) => (
+            <article class="md:grid md:grid-cols-4 md:items-baseline">
+              <Card class="md:col-span-3">
+                <CardTitle href={`/articles/${article.id}`}>
+                  {article.data.title}
+                </CardTitle>
+                <CardEyebrow
+                  as="time"
+                  dateTime={article.data.date}
+                  class="md:hidden"
+                  decorate
+                >
+                  {formatDate(article.data.date)}
+                </CardEyebrow>
+                <CardDescription>{article.data.description}</CardDescription>
+                <CardCta>Read article</CardCta>
+              </Card>
+              <CardEyebrow
+                as="time"
+                dateTime={article.data.date}
+                class="mt-1 hidden md:block"
+              >
+                {formatDate(article.data.date)}
+              </CardEyebrow>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </SimpleLayout>
+</RootLayout>

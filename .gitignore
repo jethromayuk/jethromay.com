@@ -5,15 +5,9 @@
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
+# astro
+/dist/
+/.astro/
 
 # misc
 .DS_Store
@@ -28,16 +22,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# cloudflare
-.open-next
-.dev.vars
-.wrangler
-
 # claude code
 .claude/
 .playwright-mcp/
 /*.png
 
-# generated files
+# legacy generated files (now produced by Astro)
 /public/rss/
-/src/lib/articles.generated.js

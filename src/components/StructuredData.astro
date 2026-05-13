@@ -1,0 +1,10 @@
+---
+// JSON-LD structured data. `data` is always a static object built in code,
+// never user input — set:html is safe here.
+interface Props {
+  data: Record<string, unknown>
+}
+const { data } = Astro.props
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(data)} />

@@ -1,0 +1,9 @@
+# Old article URL scheme — redirect /posts/* back to /articles
+/posts/*  /articles  301
+
+# Defensive redirect — early build artefact published a few /articles/undefined URLs
+/articles/undefined/*  /  302
+
+# Legacy RSS feed URLs from the Next.js site → new single feed
+/rss/feed.xml   /rss.xml  301
+/rss/feed.json  /rss.xml  301
