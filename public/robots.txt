@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jethromay.com/sitemap.xml
+Sitemap: https://jethromay.com/sitemap-index.xml
