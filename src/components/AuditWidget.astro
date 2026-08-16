@@ -11,9 +11,10 @@
 // frame sits on an explicit white surface in both modes.
 interface Props {
   class?: string
-  heading?: string
+  // Pass false for either when the caller supplies its own framing copy.
+  heading?: string | false
   headingLevel?: 'h2' | 'h3'
-  description?: string
+  description?: string | false
   // 'panel' draws its own bordered card. 'bare' drops the border and padding
   // for callers that already sit inside one, and still assumes a 1rem gutter
   // at mobile so the frame's bleed lines up with the parent's padding.
@@ -39,20 +40,32 @@ const shell =
 // In a panel the frame is centred in a much wider box. In a column it sits
 // under its own heading, so it aligns left instead.
 const frameAlign = variant === 'panel' ? 'sm:mx-auto' : 'sm:mx-0'
+
+// With no heading or description above it, the frame is the first thing in the
+// box and carries no top margin.
+const frameSpacing = heading || description ? 'mt-6' : ''
 ---
 
 <div class={`not-prose ${shell} ${extra}`}>
-  <Heading class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
-    {heading}
-  </Heading>
-  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+  {
+    heading && (
+      <Heading class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
+        {heading}
+      </Heading>
+    )
+  }
+  {
+    description && (
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+    )
+  }
   {/*
     The widget's Cloudflare Turnstile box will not render below 300px, so the
     frame keeps that floor, bleeds into the panel padding on small screens to
     win back the width, and scrolls rather than clipping if it still runs out.
   */}
   <div
-    class={`mt-6 -mx-4 max-w-[420px] overflow-x-auto rounded-none bg-white ring-1 ring-zinc-900/5 sm:rounded-xl dark:ring-white/10 ${frameAlign}`}
+    class={`${frameSpacing} -mx-4 max-w-[420px] overflow-x-auto rounded-none bg-white ring-1 ring-zinc-900/5 sm:rounded-xl dark:ring-white/10 ${frameAlign}`}
   >
     <iframe
       src={WIDGET_SRC}
