@@ -1,0 +1,53 @@
+---
+// Live embed of the AuditZap audit widget (auditzap.io), used as a demo of a
+// shipped product rather than as a sitewide lead-capture form.
+//
+// The iframe adds no JavaScript to the host page: it is lazy-loaded and the
+// widget's own scripts (including Cloudflare Turnstile) stay inside the frame.
+// Keep it that way - no client: directive, no wrapper script.
+//
+// The widget renders in its own light theme and does not follow this site's
+// dark/light toggle, so the surrounding panel carries the theming and the
+// frame sits on an explicit white surface in both modes.
+interface Props {
+  class?: string
+  heading?: string
+  headingLevel?: 'h2' | 'h3'
+  description?: string
+}
+
+const WIDGET_SRC =
+  'https://auditzap.io/embed/wgt_7f0c0cc8a5434b49a914ed2cca179371'
+
+const {
+  class: extra = '',
+  heading = 'Try it: run a free audit',
+  headingLevel: Heading = 'h3',
+  description = 'The live AuditZap widget - the same embed anyone can drop on their own site. Enter a URL and the report lands in your inbox.',
+} = Astro.props as Props
+---
+
+<div
+  class={`not-prose rounded-2xl border border-zinc-100 p-4 sm:p-6 dark:border-zinc-700/40 ${extra}`}
+>
+  <Heading class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
+    {heading}
+  </Heading>
+  <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+  {/*
+    The widget's Cloudflare Turnstile box will not render below 300px, so the
+    frame keeps that floor, bleeds into the panel padding on small screens to
+    win back the width, and scrolls rather than clipping if it still runs out.
+  */}
+  <div
+    class="mt-6 -mx-4 max-w-[420px] overflow-x-auto rounded-none bg-white ring-1 ring-zinc-900/5 sm:mx-0 sm:rounded-xl dark:ring-white/10"
+  >
+    <iframe
+      src={WIDGET_SRC}
+      title="Free SEO audit"
+      width="420"
+      height="560"
+      loading="lazy"
+      class="block h-[560px] w-full min-w-[300px] border-0"></iframe>
+  </div>
+</div>
