@@ -4,6 +4,7 @@ import SimpleLayout from '@/components/SimpleLayout.astro'
 import Card from '@/components/Card.astro'
 import CardDescription from '@/components/CardDescription.astro'
 import StructuredData from '@/components/StructuredData.astro'
+import AuditWidget from '@/components/AuditWidget.astro'
 import logoAuditZap from '@/images/logos/auditzap.svg'
 
 const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
@@ -93,5 +94,10 @@ const description =
         ))
       }
     </ul>
+    <AuditWidget
+      class="mt-16 sm:mt-20"
+      headingLevel="h2"
+      description="AuditZap ships an embeddable version of its audit form. This is that widget, running live - the same embed anyone can drop on their own site. Enter a URL and the report lands in your inbox."
+    />
   </SimpleLayout>
 </RootLayout>

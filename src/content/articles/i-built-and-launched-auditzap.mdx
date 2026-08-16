@@ -13,25 +13,33 @@ tags:
   - side-project
 ---
 
-I launched [AuditZap](https://auditzap.io) today. It's a website audit tool that runs 24 checks across SEO, performance, and site health, and uses AI to generate fix instructions specific to your CMS. WordPress, Shopify, Webflow, whatever you're running.
+import AuditWidget from '@/components/AuditWidget.astro'
+
+I launched [AuditZap](https://auditzap.io) today. It's a website audit tool that runs 40 checks across SEO, performance, and site health, and uses AI to generate fix instructions specific to your CMS. WordPress, Shopify, Webflow, whatever you're running.
 
 The idea came from client work. Every audit tool I used did the same thing: here are your 47 issues. Good luck. The gap was always the next step - which issues actually matter, and what do I do about them? That's what AuditZap tries to solve.
 
 ## How it works
 
-You enter a URL. The app crawls your site (up to 50 pages on Pro), runs the checks, and batches every failed result into a single Claude API call. One prompt, one response, all the fix instructions. That single-call approach keeps the AI cost to about $0.03 per audit.
+You enter a URL. The app crawls your site (up to 100 pages on Pro), runs the checks, and batches every failed result into a single Claude API call. One prompt, one response, all the fix instructions. That single-call approach keeps the AI cost to about $0.03 per audit.
 
-The checks themselves are pure functions - no side effects, no database calls. Take crawl data in, return a structured result. That made testing straightforward: 583 tests run in under 5 seconds with no Docker, no database, no Redis.
+The checks themselves are pure functions - no side effects, no database calls. Take crawl data in, return a structured result. That made testing straightforward: the suite is roughly 2,975 tests and runs with no Docker, no database, no Redis.
+
+That entry-a-URL step is also the whole of the embeddable widget, which is what you're looking at here:
+
+<AuditWidget class="my-8" />
+
+If you'd rather run one check than a whole audit, the same crawler powers the free [broken link checker](https://auditzap.io/tools/broken-link-checker), which needs no signup at all.
 
 ## The stack
 
-Next.js 16, TypeScript strict, Drizzle + Postgres, BullMQ + Redis, Puppeteer for crawling, Claude for AI, Lemon Squeezy for payments. Self-hosted on two Hetzner boxes at roughly $20/month total - one for production, one for staging.
+Next.js 16, TypeScript strict, Drizzle + Postgres, BullMQ + Redis, Puppeteer for crawling, Claude for AI, Lemon Squeezy for payments. Self-hosted on a single Hetzner box at roughly $20/month, running both production and staging.
 
-I considered Vercel but the combination of Puppeteer (needs a real browser), BullMQ (needs persistent Redis), and background workers made self-hosting the better fit. DeployHQ handles auto-deploys on push.
+I considered Vercel but the combination of Puppeteer (needs a real browser), BullMQ (needs persistent Redis), and background workers made self-hosting the better fit. GitHub Actions handles auto-deploys on push.
 
 ## Free tools
 
-I built 9 [free tool pages](https://auditzap.io/tools) - [broken link checker](https://auditzap.io/tools/broken-link-checker), [meta descriptions](https://auditzap.io/tools/meta-description-checker), [Core Web Vitals](https://auditzap.io/tools/core-web-vitals-checker), [alt text](https://auditzap.io/tools/alt-text-checker), [Open Graph](https://auditzap.io/tools/open-graph-checker), [structured data](https://auditzap.io/tools/structured-data-checker), [HTTPS & mixed content](https://auditzap.io/tools/https-checker), [redirect chains](https://auditzap.io/tools/redirect-chain-checker), and [image optimisation](https://auditzap.io/tools/image-optimisation-checker). No signup, no database writes, results in a couple of seconds. Each one targets a long-tail SEO query. Free marketing that also gives people a reason to come back.
+I built 20 [free tool pages](https://auditzap.io/tools), among them [broken link checker](https://auditzap.io/tools/broken-link-checker), [meta descriptions](https://auditzap.io/tools/meta-description-checker), [Core Web Vitals](https://auditzap.io/tools/core-web-vitals-checker), [alt text](https://auditzap.io/tools/alt-text-checker), [Open Graph](https://auditzap.io/tools/open-graph-checker), [structured data](https://auditzap.io/tools/structured-data-checker), [HTTPS & mixed content](https://auditzap.io/tools/https-checker), [redirect chains](https://auditzap.io/tools/redirect-chain-checker), and [image optimisation](https://auditzap.io/tools/image-optimisation-checker). No signup, no database writes, results in a couple of seconds. Each one targets a long-tail SEO query. Free marketing that also gives people a reason to come back.
 
 ## What I'd do differently
 
