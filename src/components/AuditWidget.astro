@@ -14,6 +14,10 @@ interface Props {
   heading?: string
   headingLevel?: 'h2' | 'h3'
   description?: string
+  // 'panel' draws its own bordered card. 'bare' drops the border and padding
+  // for callers that already sit inside one, and still assumes a 1rem gutter
+  // at mobile so the frame's bleed lines up with the parent's padding.
+  variant?: 'panel' | 'bare'
 }
 
 const WIDGET_SRC =
@@ -24,12 +28,20 @@ const {
   heading = 'Try it: run a free audit',
   headingLevel: Heading = 'h3',
   description = 'The live AuditZap widget - the same embed anyone can drop on their own site. Enter a URL and the report lands in your inbox.',
+  variant = 'panel',
 } = Astro.props as Props
+
+const shell =
+  variant === 'panel'
+    ? 'rounded-2xl border border-zinc-100 p-4 sm:p-6 dark:border-zinc-700/40'
+    : ''
+
+// In a panel the frame is centred in a much wider box. In a column it sits
+// under its own heading, so it aligns left instead.
+const frameAlign = variant === 'panel' ? 'sm:mx-auto' : 'sm:mx-0'
 ---
 
-<div
-  class={`not-prose rounded-2xl border border-zinc-100 p-4 sm:p-6 dark:border-zinc-700/40 ${extra}`}
->
+<div class={`not-prose ${shell} ${extra}`}>
   <Heading class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
     {heading}
   </Heading>
@@ -40,7 +52,7 @@ const {
     win back the width, and scrolls rather than clipping if it still runs out.
   */}
   <div
-    class="mt-6 -mx-4 max-w-[420px] overflow-x-auto rounded-none bg-white ring-1 ring-zinc-900/5 sm:mx-auto sm:rounded-xl dark:ring-white/10"
+    class={`mt-6 -mx-4 max-w-[420px] overflow-x-auto rounded-none bg-white ring-1 ring-zinc-900/5 sm:rounded-xl dark:ring-white/10 ${frameAlign}`}
   >
     <iframe
       src={WIDGET_SRC}
