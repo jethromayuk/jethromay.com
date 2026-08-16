@@ -4,12 +4,16 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/pages/articles/**/*.mdx'
+      - 'src/content/articles/**/*.mdx'
   workflow_dispatch:
     inputs:
       file:
-        description: 'Article file path to post (e.g. src/pages/articles/my-article/index.mdx)'
+        description: 'Article file path to post (e.g. src/content/articles/my-article.mdx)'
         required: true
+      dry_run:
+        description: 'Print the posts instead of publishing them'
+        type: boolean
+        default: false
 
 jobs:
   post:
@@ -21,11 +25,13 @@ jobs:
 
       - name: Find new articles
         id: find
+        env:
+          INPUT_FILE: ${{ github.event.inputs.file }}
         run: |
-          if [ -n "${{ github.event.inputs.file }}" ]; then
-            FILES="${{ github.event.inputs.file }}"
+          if [ -n "$INPUT_FILE" ]; then
+            FILES="$INPUT_FILE"
           else
-            FILES=$(git diff --name-status HEAD~1 HEAD | grep '^A' | grep 'src/pages/articles/.*\.mdx' | awk '{print $2}' | tr '\n' ' ')
+            FILES=$(git diff --name-status HEAD~1 HEAD | grep '^A' | grep 'src/content/articles/.*\.mdx' | awk '{print $2}' | tr '\n' ' ')
           fi
           echo "files=$FILES" >> $GITHUB_OUTPUT
 
@@ -36,4 +42,5 @@ jobs:
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           SITE_URL: https://jethromay.com
           NEW_ARTICLE_FILES: ${{ steps.find.outputs.files }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: node .github/scripts/post-to-bluesky.js

@@ -1,26 +1,71 @@
-const fs = require('fs')
+import fs from 'node:fs'
 
 const files = (process.env.NEW_ARTICLE_FILES || '').trim().split(/\s+/).filter(Boolean)
 
+function unquote(value) {
+  const trimmed = value.trim()
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1)
+  }
+  return trimmed
+}
+
+// Minimal YAML frontmatter reader covering the shapes used by the articles
+// collection: plain scalars, quoted scalars, inline arrays, and `|` block
+// scalars. Kept dependency-free because the workflow runs without installing.
+function parseFrontmatter(content) {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+  if (!match) return {}
+
+  const lines = match[1].split(/\r?\n/)
+  const data = {}
+
+  for (let i = 0; i < lines.length; i++) {
+    const keyMatch = lines[i].match(/^([A-Za-z_][\w-]*):\s*(.*)$/)
+    if (!keyMatch) continue
+
+    const [, key, rawValue] = keyMatch
+
+    if (/^[|>][+-]?$/.test(rawValue.trim())) {
+      const block = []
+      while (i + 1 < lines.length && /^(\s{2,}|\s*$)/.test(lines[i + 1])) {
+        block.push(lines[++i].replace(/^\s{2}/, ''))
+      }
+      data[key] = block.join('\n').trim()
+      continue
+    }
+
+    if (rawValue.trim().startsWith('[')) {
+      const inner = rawValue.trim().replace(/^\[|\]$/g, '')
+      data[key] = inner
+        .split(',')
+        .map((item) => unquote(item))
+        .filter(Boolean)
+      continue
+    }
+
+    data[key] = unquote(rawValue)
+  }
+
+  return data
+}
+
 function extractMeta(content) {
-  const titleMatch = content.match(/title:\s*"([^"]+)"/) || content.match(/title:\s*'([^']+)'/)
-  const descriptionMatch = content.match(/description:\s*"([^"]+)"/) || content.match(/description:\s*'([^']+)'/)
-  const hookMatch = content.match(/hook:\s*`([\s\S]*?)`/) || content.match(/hook:\s*"([^"]+)"/) || content.match(/hook:\s*'([^']+)'/)
-  const tagsMatch = content.match(/tags:\s*\[([^\]]+)\]/)
-  const tags = tagsMatch
-    ? tagsMatch[1].match(/['"]([^'"]+)['"]/g).map((t) => t.replace(/['"]/g, ''))
-    : []
+  const data = parseFrontmatter(content)
   return {
-    title: titleMatch?.[1] ?? null,
-    description: descriptionMatch?.[1] ?? null,
-    hook: hookMatch?.[1]?.trim() ?? null,
-    tags,
+    title: data.title || null,
+    description: data.description || null,
+    hook: data.hook || null,
+    tags: Array.isArray(data.tags) ? data.tags : [],
   }
 }
 
 function getSlug(filePath) {
   return filePath
-    .replace('src/pages/articles/', '')
+    .replace('src/content/articles/', '')
     .replace(/\/index\.mdx$/, '')
     .replace(/\.mdx$/, '')
 }
@@ -69,16 +114,26 @@ async function createRecord(accessJwt, did, record) {
   return res.json()
 }
 
-async function post(accessJwt, did, { title, description, hook, url, tags }) {
-  const encoder = new TextEncoder()
-
-  // First post: native text only — no link, no embed (better reach)
-  // Uses `hook` from meta if present, falls back to title + description
+// First post: native text only, no link, no embed (better reach).
+// Uses `hook` from meta if present, falls back to title + description.
+function buildNativeText({ title, description, hook }) {
   const nativeText = hook ?? `${title}\n\n${description ?? ''}`
   const graphemeCount = [...nativeText].length
   if (graphemeCount > 300) {
     throw new Error(`Native post text is ${graphemeCount} graphemes — Bluesky limit is 300. Shorten the hook in the article meta.`)
   }
+  return nativeText
+}
+
+function buildReplyText({ url, tags }) {
+  const hashtagLine = tags.length ? '\n\n' + tags.map((t) => `#${t}`).join(' ') : ''
+  return `${url}${hashtagLine}`
+}
+
+async function post(accessJwt, did, { title, description, hook, url, tags }) {
+  const encoder = new TextEncoder()
+
+  const nativeText = buildNativeText({ title, description, hook })
   const firstRecord = {
     $type: 'app.bsky.feed.post',
     text: nativeText,
@@ -87,8 +142,7 @@ async function post(accessJwt, did, { title, description, hook, url, tags }) {
   const firstPost = await createRecord(accessJwt, did, firstRecord)
 
   // Reply post: link + hashtags + embed card, threaded under the first
-  const hashtagLine = tags.length ? '\n\n' + tags.map((t) => `#${t}`).join(' ') : ''
-  const replyText = `${url}${hashtagLine}`
+  const replyText = buildReplyText({ url, tags })
 
   const urlByteEnd = encoder.encode(url).length
   const facets = [
@@ -138,6 +192,8 @@ async function post(accessJwt, did, { title, description, hook, url, tags }) {
 }
 
 async function main() {
+  const dryRun = /^(1|true)$/i.test(process.env.DRY_RUN ?? '')
+
   if (!files.length) {
     console.log('No new articles found.')
     return
@@ -145,8 +201,8 @@ async function main() {
 
   console.log(`Found ${files.length} new article(s): ${files.join(', ')}`)
 
-  const session = await createSession()
-  console.log(`Authenticated as ${session.handle}`)
+  const session = dryRun ? null : await createSession()
+  console.log(dryRun ? 'Dry run: nothing will be published.' : `Authenticated as ${session.handle}`)
 
   for (const file of files) {
     const content = fs.readFileSync(file, 'utf-8')
@@ -159,6 +215,14 @@ async function main() {
 
     const slug = getSlug(file)
     const url = `${process.env.SITE_URL}/articles/${slug}`
+
+    if (dryRun) {
+      console.log(`\n--- ${file} ---`)
+      console.log(buildNativeText(meta))
+      console.log('--- reply ---')
+      console.log(buildReplyText({ url, tags: meta.tags }))
+      continue
+    }
 
     console.log(`Posting: ${meta.title}`)
     const result = await post(session.accessJwt, session.did, { ...meta, url })
