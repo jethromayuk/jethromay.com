@@ -5,7 +5,6 @@ import Card from '@/components/Card.astro'
 import CardDescription from '@/components/CardDescription.astro'
 import StructuredData from '@/components/StructuredData.astro'
 import logoAuditZap from '@/images/logos/auditzap.svg'
-import logoHygieneScout from '@/images/logos/hygienescout.svg'
 
 const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://jethromay.com'
 
@@ -18,18 +17,12 @@ const projects = [
     logo: logoAuditZap,
     tech: ['Next.js', 'TypeScript', 'Drizzle ORM', 'BullMQ', 'Claude AI'],
   },
-  {
-    name: 'HygieneScout',
-    description:
-      'Look up the food hygiene rating of every inspected food business in the UK. 608,000+ establishments across 650,000+ pages.',
-    link: { href: 'https://hygienescout.co.uk', label: 'hygienescout.co.uk' },
-    logo: logoHygieneScout,
-    tech: ['Next.js', 'PostgreSQL', 'Tailwind CSS', 'Drizzle ORM'],
-  },
 ] as const
 
 const title = 'Projects - Jethro May'
-const description = "Side projects, tools, and experiments I've shipped."
+const intro = "Side projects, tools, and experiments I've shipped."
+const description =
+  'Side projects, tools, and experiments by Jethro May, including AuditZap, an AI-powered website audit tool that finds SEO, performance, and site health issues.'
 ---
 
 <RootLayout
@@ -47,7 +40,7 @@ const description = "Side projects, tools, and experiments I've shipped."
       url: `${SITE_URL}/projects`,
     }}
   />
-  <SimpleLayout title="Things I've built" intro={description}>
+  <SimpleLayout title="Things I've built" intro={intro}>
     <ul
       role="list"
       class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
@@ -56,7 +49,13 @@ const description = "Side projects, tools, and experiments I've shipped."
         projects.map((project) => (
           <Card as="li">
             <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <img src={project.logo.src} alt="" class="h-8 w-8" />
+              <img
+                src={project.logo.src}
+                alt=""
+                width="32"
+                height="32"
+                class="h-8 w-8"
+              />
             </div>
             <h2 class="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
               <div class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />

@@ -14,7 +14,10 @@ export default defineConfig({
   site: SITE,
   output: 'static',
   trailingSlash: 'ignore',
-  adapter: cloudflare(),
+  // 'compile' optimises images with Sharp at build time. The adapter default
+  // ('cloudflare-binding') would defer every transform to a runtime Images
+  // binding this Worker does not have.
+  adapter: cloudflare({ imageService: 'compile' }),
   integrations: [
     mdx({
       remarkPlugins: [remarkGfm],
@@ -22,7 +25,7 @@ export default defineConfig({
     }),
     react(),
     sitemap({
-      filter: (page) => !page.includes('/rss.xml'),
+      filter: (page) => !page.includes('/rss.xml') && !page.includes('/llms.txt'),
     }),
   ],
   vite: {
