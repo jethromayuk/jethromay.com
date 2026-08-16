@@ -16,6 +16,8 @@ interface Project {
   tech: readonly string[]
   // Renders the live AuditZap embed in the card's second column.
   widget?: boolean
+  // Sits under the description and explains what that embed is.
+  widgetNote?: string
 }
 
 const projects: Project[] = [
@@ -27,6 +29,8 @@ const projects: Project[] = [
     logo: logoAuditZap,
     tech: ['Next.js', 'TypeScript', 'Drizzle ORM', 'BullMQ', 'Claude AI'],
     widget: true,
+    widgetNote:
+      'AuditZap ships an embeddable version of its audit form. The widget on this page is that embed, running live - the same one anyone can drop on their own site.',
   },
 ]
 
@@ -78,6 +82,9 @@ const description =
                   </a>
                 </h2>
                 <CardDescription>{project.description}</CardDescription>
+                {project.widgetNote && (
+                  <CardDescription>{project.widgetNote}</CardDescription>
+                )}
                 <div class="mt-4 flex flex-wrap gap-1.5">
                   {project.tech.map((t) => (
                     <span class="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
@@ -110,8 +117,8 @@ const description =
               {project.widget && (
                 <AuditWidget
                   variant="bare"
-                  headingLevel="h3"
-                  description="AuditZap ships an embeddable version of its audit form. This is that widget, running live - the same embed anyone can drop on their own site."
+                  heading={false}
+                  description={false}
                 />
               )}
             </div>
